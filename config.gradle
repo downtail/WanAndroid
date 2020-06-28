@@ -28,6 +28,11 @@ ext {
             utilcode        : "1.28.4",
             material        : "1.1.0",
             base            : "3.0.2",
-            glide           : "4.11.0"
+            glide           : "4.11.0",
+            flexbox         : "2.0.1",
+            refresh         : "1.1.0-alpha-29",
+            transformations : "4.0.0",
+            circle          : "3.1.0",
+            vassonic        : "3.1.0"
     ]
 }

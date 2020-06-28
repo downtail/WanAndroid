@@ -9,7 +9,7 @@ import javax.inject.Inject;
 public class BasePresenter<V extends BaseContract.BaseView> implements BaseContract.BasePresenter<V> {
 
     @Inject
-    public DataManager dataManager;
+    protected DataManager dataManager;
     protected V mView;
 
     @Override

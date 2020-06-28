@@ -5,7 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.downtail.wanandroid.R;
+import com.downtail.wanandroid.app.Navigator;
 import com.downtail.wanandroid.base.mvp.BaseContract;
 import com.downtail.wanandroid.widget.StateView;
 import com.trello.rxlifecycle3.LifecycleTransformer;
@@ -123,12 +125,17 @@ public abstract class BaseFragment<T extends BaseContract.BasePresenter> extends
 
     @Override
     public void toast(String message) {
+        ToastUtils.showShort(message);
+    }
 
+    @Override
+    public void toast(int resId) {
+        ToastUtils.showShort(resId);
     }
 
     @Override
     public void jumpToLogin() {
-
+        Navigator.openLogin(_mActivity);
     }
 
     @Override

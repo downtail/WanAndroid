@@ -18,6 +18,8 @@ public interface BaseContract {
 
         void toast(String message);
 
+        void toast(int resId);
+
         void jumpToLogin();
 
         <T> LifecycleTransformer<T> bindToLife();

@@ -10,4 +10,9 @@ public class SettingPresenter extends BasePresenter<SettingContract.View> implem
     @Inject
     public SettingPresenter() {
     }
+
+    @Override
+    public boolean getUserLoginStatus() {
+        return dataManager.getLoginStatus();
+    }
 }

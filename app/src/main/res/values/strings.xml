@@ -3,7 +3,36 @@
 
     <string name="item_home">首页</string>
     <string name="item_system">体系</string>
-    <string name="item_navigation">导航</string>
     <string name="item_project">项目</string>
+    <string name="item_public">公众号</string>
     <string name="item_setting">我的</string>
+    <string name="exitAgain">再按一次退出</string>
+
+    <string name="serviceHint">搜索历史文章</string>
+
+    <string name="mine_setting">设置</string>
+    <string name="setting_login">登陆</string>
+    <string name="setting_logout">退出</string>
+    <string name="mine_collect">收藏</string>
+    <string name="mine_rank">积分排行</string>
+    <string name="confirmCollectSuccess">已收藏成功</string>
+    <string name="cancelCollectSuccess">已取消收藏</string>
+    <string name="collectEditName">名称</string>
+    <string name="collectEditLink">链接</string>
+    <string name="collectNameHint">请输入名称</string>
+    <string name="collectLinkHint">请输入链接</string>
+    <string name="collectEditConfirm">完成</string>
+
+    <string name="userShow">完成</string>
+    <string name="userLogin">登陆</string>
+    <string name="userRegister">注册</string>
+    <string name="userAccount">账号</string>
+    <string name="userPassword">密码</string>
+    <string name="userAccountHint">输入账号</string>
+    <string name="userPasswordHint">输入密码</string>
+    <string name="userAccountToast">请输入账号</string>
+    <string name="userPasswordToast">请输入密码</string>
+    <string name="userPasswordError">两次密码不一致</string>
+    <string name="userLoginSuccess">登陆成功</string>
+    <string name="userLogoutSuccess">退出成功</string>
 </resources>

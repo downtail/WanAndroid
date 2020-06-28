@@ -10,7 +10,7 @@ import com.downtail.wanandroid.core.http.HttpHelper;
 import com.downtail.wanandroid.core.http.HttpHelperImpl;
 import com.downtail.wanandroid.core.http.RetrofitManager;
 import com.downtail.wanandroid.core.http.api.HomeApi;
-import com.downtail.wanandroid.core.http.api.NavigationApi;
+import com.downtail.wanandroid.core.http.api.ServiceApi;
 import com.downtail.wanandroid.core.http.api.ProjectApi;
 import com.downtail.wanandroid.core.http.api.SetupApi;
 import com.downtail.wanandroid.core.http.api.SystemApi;
@@ -52,8 +52,8 @@ public class AppModule {
 
     @AppScope
     @Provides
-    public NavigationApi provideNavigationApi() {
-        return RetrofitManager.getInstance().create(NavigationApi.class);
+    public ServiceApi provideNavigationApi() {
+        return RetrofitManager.getInstance().create(ServiceApi.class);
     }
 
     @AppScope

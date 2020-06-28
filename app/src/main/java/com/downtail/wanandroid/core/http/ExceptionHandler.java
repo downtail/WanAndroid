@@ -15,13 +15,14 @@ public class ExceptionHandler {
             } else if (errCode == -2) {
                 view.showEmpty();
             } else if (errCode == -1) {
-                view.toast(err.getErrMsg());
+
             }
+            view.toast(err.getErrMsg());
         } else {
 //            if (e instanceof NullPointerException) {
 //                return;
 //            }
-            view.showError();
+            view.toast(e.getMessage());
         }
     }
 }

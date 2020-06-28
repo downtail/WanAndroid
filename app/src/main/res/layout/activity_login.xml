@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:id="@+id/layoutDrawer"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/ivLogin"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/login" />
+
+    <LinearLayout
+        android:id="@+id/layoutAction"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvLogin"
+            android:layout_width="100dp"
+            android:layout_height="@dimen/dp_40"
+            android:background="@drawable/shape_login"
+            android:gravity="center"
+            android:text="@string/userLogin"
+            android:textColor="@color/color_ffffff"
+            android:textSize="@dimen/dimen_14sp" />
+
+        <TextView
+            android:id="@+id/tvRegister"
+            android:layout_width="100dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_marginTop="@dimen/dimen_20dp"
+            android:background="@drawable/shape_login"
+            android:gravity="center"
+            android:text="@string/userRegister"
+            android:textColor="@color/color_ffffff"
+            android:textSize="@dimen/dimen_14sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutShow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_40dp"
+        android:layout_marginEnd="@dimen/dimen_40dp"
+        android:background="@drawable/shape_login"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tvShow"
+            android:textSize="@dimen/dimen_14sp"
+            android:textColor="@color/color_ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_30dp"
+            android:gravity="center" />
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/dimen_15dp"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_40dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="@dimen/dimen_60dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/dimen_10dp"
+                android:gravity="center"
+                android:text="@string/userAccount"
+                android:textColor="@color/color_ffffff"
+                android:textSize="@dimen/sp_14" />
+
+            <EditText
+                android:hint="@string/userAccountHint"
+                android:textColorHint="@color/color_ffffff"
+                android:paddingStart="@dimen/dimen_10dp"
+                android:paddingEnd="@dimen/dimen_10dp"
+                android:id="@+id/etAccount"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:gravity="center_vertical|start"
+                android:inputType="text"
+                android:textColor="@color/color_ffffff"
+                android:textSize="@dimen/dimen_14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/dimen_15dp"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_40dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="@dimen/dimen_60dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/dimen_10dp"
+                android:gravity="center"
+                android:text="@string/userPassword"
+                android:textColor="@color/color_ffffff"
+                android:textSize="@dimen/sp_14" />
+
+            <EditText
+                android:id="@+id/etPassword"
+                android:hint="@string/userPasswordHint"
+                android:textColorHint="@color/color_ffffff"
+                android:paddingStart="@dimen/dimen_10dp"
+                android:paddingEnd="@dimen/dimen_10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:gravity="center_vertical|start"
+                android:inputType="textPassword"
+                android:textColor="@color/color_ffffff"
+                android:textSize="@dimen/dimen_14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutRe"
+            android:layout_marginTop="@dimen/dimen_15dp"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_40dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="@dimen/dimen_60dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/dimen_10dp"
+                android:gravity="center"
+                android:text="@string/userPassword"
+                android:textColor="@color/color_ffffff"
+                android:textSize="@dimen/sp_14" />
+
+            <EditText
+                android:id="@+id/etRe"
+                android:hint="@string/userPasswordHint"
+                android:textColorHint="@color/color_ffffff"
+                android:paddingStart="@dimen/dimen_10dp"
+                android:paddingEnd="@dimen/dimen_10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:gravity="center_vertical|start"
+                android:inputType="textPassword"
+                android:textColor="@color/color_ffffff"
+                android:textSize="@dimen/dimen_14sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvConfirm"
+            android:layout_marginBottom="@dimen/dimen_20dp"
+            android:textColor="@color/color_ffffff"
+            android:textSize="@dimen/dimen_14sp"
+            android:gravity="center"
+            android:text="@string/userShow"
+            android:layout_marginTop="@dimen/dimen_20dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="@dimen/dimen_60dp"
+            android:layout_height="@dimen/dimen_40dp"/>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

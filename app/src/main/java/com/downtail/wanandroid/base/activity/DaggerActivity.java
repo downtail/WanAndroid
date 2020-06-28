@@ -5,6 +5,7 @@ import android.os.Bundle;
 import com.downtail.wanandroid.app.App;
 import com.downtail.wanandroid.base.mvp.BaseContract;
 import com.downtail.wanandroid.di.component.ActivityComponent;
+
 import com.downtail.wanandroid.di.component.DaggerActivityComponent;
 import com.downtail.wanandroid.di.module.ActivityModule;
 import com.trello.rxlifecycle3.LifecycleTransformer;
@@ -78,6 +79,16 @@ public abstract class DaggerActivity<T extends BaseContract.BasePresenter> exten
 
     @Override
     public void toast(String message) {
+
+    }
+
+    @Override
+    public void onReload() {
+
+    }
+
+    @Override
+    public void toast(int resId) {
 
     }
 

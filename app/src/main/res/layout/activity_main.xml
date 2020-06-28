@@ -17,6 +17,7 @@
         android:id="@+id/pagerContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/dimen_50dp"
         app:layout_constraintBottom_toTopOf="@+id/dividerView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,7 +26,7 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigationView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/dimen_50dp"
         app:itemBackground="@color/color_ffffff"
         app:itemIconSize="@dimen/dimen_20dp"
         app:itemIconTint="@drawable/selector_navigation"

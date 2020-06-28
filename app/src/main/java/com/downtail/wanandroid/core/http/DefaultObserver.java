@@ -1,7 +1,6 @@
 package com.downtail.wanandroid.core.http;
 
 
-
 import com.downtail.wanandroid.base.mvp.BaseContract;
 
 import io.reactivex.Observer;
@@ -23,9 +22,6 @@ public abstract class DefaultObserver<T> implements Observer<T> {
     @Override
     public void onNext(T t) {
         onSuccess(t);
-        if (t instanceof Error) {
-            mView.toast(((Error) t).getErrMsg());
-        }
     }
 
     public abstract void onSuccess(T data);

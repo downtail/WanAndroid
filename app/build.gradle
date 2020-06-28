@@ -64,4 +64,10 @@ dependencies {
     implementation "com.github.CymChad:BaseRecyclerViewAdapterHelper:${rootProject.ext.dependencies.base}"
     implementation "com.github.bumptech.glide:glide:${rootProject.ext.dependencies.glide}"
     annotationProcessor "com.github.bumptech.glide:compiler:${rootProject.ext.dependencies.glide}"
+    implementation "com.google.android:flexbox:${rootProject.ext.dependencies.flexbox}"
+    implementation "com.scwang.smartrefresh:SmartRefreshLayout:${rootProject.ext.dependencies.refresh}"
+    implementation "jp.wasabeef:glide-transformations:${rootProject.ext.dependencies.transformations}"
+    implementation "de.hdodenhof:circleimageview:${rootProject.ext.dependencies.circle}"
+    implementation "com.tencent.sonic:sdk:${rootProject.ext.dependencies.vassonic}"
+    implementation 'com.github.downtail:ItemDecorationPlus:0.2.0'
 }
