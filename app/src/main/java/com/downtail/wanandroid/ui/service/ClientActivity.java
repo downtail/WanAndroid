@@ -118,6 +118,11 @@ public class ClientActivity extends BaseActivity<ClientPresenter> implements Cli
     }
 
     @Override
+    public void onReload() {
+
+    }
+
+    @Override
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
         smartRefreshLayout.finishLoadMore(1000);
         dealWithInput(false);

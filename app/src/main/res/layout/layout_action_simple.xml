@@ -3,14 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="@dimen/dimen_40dp"
-    android:background="@color/color_18ce94">
+    android:background="@color/color_ffffff">
 
     <TextView
         android:id="@+id/tvAction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:textColor="@color/color_ffffff"
+        android:textStyle="bold"
+        android:textColor="@color/color_000000"
         android:textSize="@dimen/dimen_14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

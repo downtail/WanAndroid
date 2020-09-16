@@ -89,11 +89,6 @@ public abstract class DaggerFragment<T extends BaseContract.BasePresenter> exten
     }
 
     @Override
-    public void onReload() {
-
-    }
-
-    @Override
     public void toast(int resId) {
 
     }

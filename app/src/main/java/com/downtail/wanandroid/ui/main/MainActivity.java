@@ -1,7 +1,8 @@
 package com.downtail.wanandroid.ui.main;
 
-import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.downtail.wanandroid.R;
 import com.downtail.wanandroid.base.activity.BaseActivity;
@@ -11,15 +12,22 @@ import com.downtail.wanandroid.utils.ExitUtil;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager2.widget.ViewPager2;
 import butterknife.BindView;
 
 public class MainActivity extends BaseActivity<MainPresenter> implements MainContract.View, BottomNavigationView.OnNavigationItemSelectedListener {
 
+    @BindView(R.id.tvAction)
+    TextView tvAction;
+    @BindView(R.id.drawerLayout)
+    DrawerLayout drawerLayout;
+    @BindView(R.id.contentView)
+    View contentView;
     @BindView(R.id.navigationView)
     BottomNavigationView navigationView;
-    @BindView(R.id.pagerContainer)
+    @BindView(R.id.vpContainer)
     ViewPager2 pagerContainer;
 
     @Override
@@ -34,6 +42,30 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     @Override
     protected void initEvents() {
+        drawerLayout.addDrawerListener(new DrawerLayout.DrawerListener() {
+            @Override
+            public void onDrawerSlide(@NonNull View drawerView, float slideOffset) {
+                int offset = Float.valueOf(drawerView.getWidth() * slideOffset).intValue();
+                contentView.setTranslationX(offset);
+            }
+
+            @Override
+            public void onDrawerOpened(@NonNull View drawerView) {
+
+            }
+
+            @Override
+            public void onDrawerClosed(@NonNull View drawerView) {
+
+            }
+
+            @Override
+            public void onDrawerStateChanged(int newState) {
+
+            }
+        });
+        tvAction.setText(R.string.item_setting);
+
         navigationView.setOnNavigationItemSelectedListener(this);
         MainFragmentAdapter mainFragmentAdapter = new MainFragmentAdapter(this);
         pagerContainer.setOffscreenPageLimit(2);
@@ -58,12 +90,21 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     }
 
     @Override
+    protected void initStatusBar() {
+        super.initStatusBar();
+    }
+
+    @Override
     protected boolean supportSwipeBack() {
         return false;
     }
 
     @Override
     public void onBackPressedSupport() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+            return;
+        }
         if (ExitUtil.exit()) {
             System.exit(0);
         } else {

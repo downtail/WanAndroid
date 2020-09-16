@@ -1,11 +1,12 @@
 <resources>
-    <string name="app_name">WanAndroid</string>
+    <string name="app_name">WanAndroid_Java</string>
+    <string name="item_setting">我的</string>
 
     <string name="item_home">首页</string>
     <string name="item_system">体系</string>
     <string name="item_project">项目</string>
     <string name="item_public">公众号</string>
-    <string name="item_setting">我的</string>
+
     <string name="exitAgain">再按一次退出</string>
 
     <string name="serviceHint">搜索历史文章</string>

@@ -10,14 +10,15 @@ import com.downtail.wanandroid.widget.plus.StatusBarPlus;
 
 import java.util.concurrent.TimeUnit;
 
+import androidx.annotation.NonNull;
 import butterknife.BindView;
 import butterknife.OnClick;
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.annotations.NonNull;
-import io.reactivex.rxjava3.core.Observable;
-import io.reactivex.rxjava3.core.Observer;
-import io.reactivex.rxjava3.disposables.Disposable;
-import io.reactivex.rxjava3.schedulers.Schedulers;
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+
 
 public class SplashActivity extends BaseActivity {
 
@@ -28,7 +29,7 @@ public class SplashActivity extends BaseActivity {
 
     @Override
     protected void initBeforeBindLayout() {
-//        setTheme(R.style.MainTheme);
+        setTheme(R.style.MainTheme);
     }
 
     @Override
@@ -38,7 +39,6 @@ public class SplashActivity extends BaseActivity {
 
     @Override
     protected void initEvents() {
-        setTheme(R.style.MainTheme);
         Observable.interval(0, 1, TimeUnit.SECONDS)
                 .take(4)
                 .subscribeOn(Schedulers.io())
@@ -79,7 +79,6 @@ public class SplashActivity extends BaseActivity {
     @Override
     protected void initStatusBar() {
         StatusBarPlus.setTransparent(this);
-        StatusBarPlus.setStatusBarMode(this, false);
     }
 
     @Override
@@ -111,7 +110,7 @@ public class SplashActivity extends BaseActivity {
     }
 
     private void jumpToMainPage() {
-        finish();
         Navigator.openMain(mActivity);
+        finish();
     }
 }

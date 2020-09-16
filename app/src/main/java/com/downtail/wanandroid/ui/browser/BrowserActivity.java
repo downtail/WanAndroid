@@ -212,6 +212,11 @@ public class BrowserActivity extends BaseActivity<BrowserPresenter> implements B
         mActivityComponent.inject(this);
     }
 
+    @Override
+    public void onReload() {
+
+    }
+
     @OnClick({R.id.layoutBack})
     public void onViewClicked(View view) {
         switch (view.getId()) {

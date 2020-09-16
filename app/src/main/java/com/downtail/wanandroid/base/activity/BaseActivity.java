@@ -74,8 +74,8 @@ public abstract class BaseActivity<T extends BaseContract.BasePresenter> extends
     }
 
     protected void initStatusBar() {
-        StatusBarPlus.setColor(this, getResources().getColor(R.color.colorPrimaryDark));
-        StatusBarPlus.setStatusBarMode(this, false);
+        StatusBarPlus.setColor(this, getResources().getColor(R.color.colorPrimaryDark), true);
+        StatusBarPlus.setStatusBarMode(this, true);
     }
 
     protected boolean supportStateController() {

@@ -85,6 +85,11 @@ public class RecordActivity extends BaseActivity<RecordPresenter> implements Rec
     }
 
     @Override
+    public void onReload() {
+
+    }
+
+    @Override
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
         smartRefreshLayout.finishLoadMore(1000);
         mPresenter.getRecordData(page + 1);

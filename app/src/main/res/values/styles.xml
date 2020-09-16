@@ -11,7 +11,11 @@
 
     <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowBackground">@drawable/splash</item>
+    </style>
+
+    <style name="MainTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowBackground">@color/color_dcdcdc</item>
     </style>
 
     <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog">
@@ -20,16 +24,12 @@
         <item name="android:windowBackground">@android:color/transparent</item>
     </style>
 
-    <style name="MainTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:windowIsTranslucent">false</item>
-    </style>
-
     <style name="navigation_normal_text">
-        <item name="android:textSize">@dimen/dimen_10sp</item>
+        <item name="android:textSize">@dimen/dimen_12sp</item>
     </style>
 
     <style name="navigation_selected_text">
-        <item name="android:textSize">@dimen/dimen_10sp</item>
+        <item name="android:textSize">@dimen/dimen_12sp</item>
     </style>
 
 </resources>

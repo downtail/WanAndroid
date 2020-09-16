@@ -67,6 +67,11 @@ public class RankActivity extends BaseActivity<RankPresenter> implements RankCon
     }
 
     @Override
+    public void onReload() {
+
+    }
+
+    @Override
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
         smartRefreshLayout.finishLoadMore(1000);
         mPresenter.getRankListData(page + 1);
