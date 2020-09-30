@@ -27,7 +27,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <RelativeLayout
-            android:background="@drawable/bg_rectangle_press_ripple"
+            android:background="@drawable/bg_item"
             android:focusable="true"
             android:clickable="true"
             android:id="@+id/layoutRank"
@@ -62,7 +62,7 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:background="@drawable/bg_rectangle_press_ripple"
+            android:background="@drawable/bg_item"
             android:focusable="true"
             android:clickable="true"
             android:id="@+id/layoutCollect"
@@ -98,7 +98,7 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:background="@drawable/bg_rectangle_press_ripple"
+            android:background="@drawable/bg_item"
             android:focusable="true"
             android:clickable="true"
             android:id="@+id/layoutSetting"

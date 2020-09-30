@@ -5,7 +5,7 @@ public class ExitUtil {
     private static long lastTime = 0;
     private static final long DURATION = 800;
 
-    public static boolean exit() {
+    public static boolean enableExit() {
         long currentTime = System.currentTimeMillis();
         if (currentTime - lastTime <= DURATION) {
             return true;

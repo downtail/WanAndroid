@@ -4,6 +4,8 @@ package com.downtail.wanandroid.core.http;
 import com.downtail.wanandroid.BuildConfig;
 import com.downtail.wanandroid.app.App;
 import com.downtail.wanandroid.app.Constants;
+import com.downtail.wanandroid.core.http.converter.CustomGsonConverterFactory;
+import com.downtail.wanandroid.core.http.interceptor.CacheInterceptor;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -13,7 +15,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitManager {
 
@@ -46,7 +47,7 @@ public class RetrofitManager {
         mRetrofit = new Retrofit.Builder()
                 .baseUrl(Constants.BASE_URL)
                 .client(client)
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(CustomGsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
     }

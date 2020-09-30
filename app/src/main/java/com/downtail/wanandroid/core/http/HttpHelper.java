@@ -15,9 +15,12 @@ import com.downtail.wanandroid.ui.system.entity.SystemResponse;
 import java.util.List;
 
 import io.reactivex.Observable;
+import okhttp3.ResponseBody;
 
 
 public interface HttpHelper {
+
+    Observable<ResponseBody> downloadLatestApk(String url);
 
     Observable<BaseResponse<List<BannerResponse>>> getBannerData();
 

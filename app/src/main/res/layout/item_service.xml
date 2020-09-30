@@ -13,7 +13,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bg_rectangle_press_ripple">
+        android:background="@drawable/bg_item">
 
         <ImageView
             android:id="@+id/ivAvatar"

@@ -22,7 +22,8 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
+
+import androidx.annotation.Nullable;
 
 import com.downtail.wanandroid.R;
 import com.downtail.wanandroid.base.activity.BaseActivity;
@@ -38,9 +39,7 @@ import com.tencent.sonic.sdk.SonicSessionConfig;
 
 import java.util.Random;
 
-import androidx.annotation.Nullable;
 import butterknife.BindView;
-import butterknife.OnClick;
 
 public class BrowserActivity extends BaseActivity<BrowserPresenter> implements BrowserContract.View, GestureDetector.OnGestureListener,
         GestureDetector.OnDoubleTapListener {
@@ -51,8 +50,6 @@ public class BrowserActivity extends BaseActivity<BrowserPresenter> implements B
 
     @BindView(R.id.rootView)
     ViewGroup rootView;
-    @BindView(R.id.tvAction)
-    TextView tvAction;
     @BindView(R.id.webView)
     WebView webView;
 
@@ -93,7 +90,7 @@ public class BrowserActivity extends BaseActivity<BrowserPresenter> implements B
         if (null != sonicSession) {
             sonicSession.bindClient(sonicSessionClient = new SonicSessionClientImpl());
         } else {
-//            toast("create sonic session fail!");
+            //            toast("create sonic session fail!");
         }
 
         webView.setWebViewClient(new WebViewClient() {
@@ -148,7 +145,7 @@ public class BrowserActivity extends BaseActivity<BrowserPresenter> implements B
         // 缩放至屏幕的大小
         webSettings.setLoadWithOverviewMode(true);
         //支持缩放，默认为true。是下面那个的前提
-        webSettings.setSupportZoom(true);
+        webSettings.setSupportZoom(false);
         //设置内置的缩放控件。若为false，则该WebView不可缩放
         webSettings.setBuiltInZoomControls(true);
         //隐藏原生的缩放控件
@@ -215,15 +212,6 @@ public class BrowserActivity extends BaseActivity<BrowserPresenter> implements B
     @Override
     public void onReload() {
 
-    }
-
-    @OnClick({R.id.layoutBack})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.layoutBack:
-                finish();
-                break;
-        }
     }
 
     @Override
@@ -347,8 +335,8 @@ public class BrowserActivity extends BaseActivity<BrowserPresenter> implements B
         layoutParams.leftMargin = touchX - DisplayUtil.dip2px(mActivity, 25);
         layoutParams.topMargin = touchY - DisplayUtil.dip2px(mActivity, 50);
         ivStar.setLayoutParams(layoutParams);
-//        ivStar.setLeft(touchX - DisplayUtil.dip2px(mActivity, 25));
-//        ivStar.setBottom(touchY - DisplayUtil.dip2px(mActivity, 25));
+        //        ivStar.setLeft(touchX - DisplayUtil.dip2px(mActivity, 25));
+        //        ivStar.setBottom(touchY - DisplayUtil.dip2px(mActivity, 25));
         rootView.addView(ivStar);
         ImageLoader.loadNormalImage(mActivity, ivStar, R.drawable.image_collect_selected);
         AnimatorSet animatorSet = new AnimatorSet();

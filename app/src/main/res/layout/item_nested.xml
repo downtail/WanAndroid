@@ -6,7 +6,7 @@
     android:layout_marginTop="@dimen/dimen_5dp"
     android:layout_marginEnd="@dimen/dimen_10dp"
     android:layout_marginBottom="@dimen/dimen_5dp"
-    android:background="@drawable/bg_press_ripple"
+    android:background="@drawable/bg_ring"
     android:clickable="true"
     android:focusable="true"
     android:orientation="vertical"
@@ -18,6 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
+        android:textColor="@color/color_424242"
         android:textSize="@dimen/dimen_12sp" />
 
 </LinearLayout>

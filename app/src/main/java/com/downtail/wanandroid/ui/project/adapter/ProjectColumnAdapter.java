@@ -1,5 +1,10 @@
 package com.downtail.wanandroid.ui.project.adapter;
 
+import android.graphics.Typeface;
+import android.widget.TextView;
+
+import androidx.core.content.ContextCompat;
+
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.downtail.wanandroid.R;
@@ -9,8 +14,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
-
-import androidx.core.content.ContextCompat;
 
 public class ProjectColumnAdapter extends BaseQuickAdapter<CategoryResponse, BaseViewHolder> {
 
@@ -24,10 +27,15 @@ public class ProjectColumnAdapter extends BaseQuickAdapter<CategoryResponse, Bas
     protected void convert(@NotNull BaseViewHolder baseViewHolder, CategoryResponse categoryResponse) {
         baseViewHolder.setText(R.id.tvColumn, categoryResponse.getName());
         int position = baseViewHolder.getAdapterPosition();
+        TextView tvColumn = baseViewHolder.getView(R.id.tvColumn);
         if (position == index) {
-            baseViewHolder.setTextColor(R.id.tvColumn, ContextCompat.getColor(getContext(), R.color.color_ffffff));
+            baseViewHolder.setTextColor(R.id.tvColumn, ContextCompat.getColor(getContext(), R.color.color_18ce94));
+            tvColumn.setTextSize(16);
+            tvColumn.setTypeface(Typeface.DEFAULT_BOLD);
         } else {
-            baseViewHolder.setTextColor(R.id.tvColumn, ContextCompat.getColor(getContext(), R.color.color_cecece));
+            baseViewHolder.setTextColor(R.id.tvColumn, ContextCompat.getColor(getContext(), R.color.color_212121));
+            tvColumn.setTextSize(14);
+            tvColumn.setTypeface(Typeface.DEFAULT);
         }
     }
 

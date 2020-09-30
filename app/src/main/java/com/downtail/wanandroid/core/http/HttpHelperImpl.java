@@ -22,6 +22,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
+import okhttp3.ResponseBody;
 
 
 public class HttpHelperImpl implements HttpHelper {
@@ -39,6 +40,11 @@ public class HttpHelperImpl implements HttpHelper {
         this.serviceApi = serviceApi;
         this.projectApi = projectApi;
         this.setupApi = setupApi;
+    }
+
+    @Override
+    public Observable<ResponseBody> downloadLatestApk(String url) {
+        return homeApi.downloadLatestApk(url);
     }
 
     @Override

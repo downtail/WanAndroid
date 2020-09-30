@@ -8,11 +8,17 @@
         android:id="@+id/rvColumn"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_40dp"
-        android:background="@color/color_18ce94" />
+        android:background="@color/color_ffffff" />
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/pagerColumn"
+    <com.downtail.wanandroid.widget.NestedScrollableHost
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/pagerColumn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </com.downtail.wanandroid.widget.NestedScrollableHost>
 
 </LinearLayout>

@@ -5,23 +5,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.blankj.utilcode.util.ToastUtils;
-import com.downtail.wanandroid.R;
-import com.downtail.wanandroid.app.Navigator;
-import com.downtail.wanandroid.base.mvp.BaseContract;
-import com.downtail.wanandroid.widget.StateView;
-import com.trello.rxlifecycle3.LifecycleTransformer;
-
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.blankj.utilcode.util.ToastUtils;
+import com.downtail.wanandroid.app.Navigator;
+import com.downtail.wanandroid.base.mvp.BaseContract;
+import com.downtail.wanandroid.widget.StatePlus;
+import com.trello.rxlifecycle3.LifecycleTransformer;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public abstract class BaseFragment<T extends BaseContract.BasePresenter> extends DaggerFragment<T> implements View.OnClickListener {
+public abstract class BaseFragment<T extends BaseContract.BasePresenter> extends PermissionFragment<T> {
 
     private Unbinder unbinder;
-    protected StateView stateView;
+    protected StatePlus statePlus;
 
     @Nullable
     @Override
@@ -36,9 +36,10 @@ public abstract class BaseFragment<T extends BaseContract.BasePresenter> extends
         if (supportStatusBar()) {
             view = initStatusBar(view);
         }
-        //页面状态控制
+        //是否支持状态控制
         if (supportStateController()) {
-            view = initStateView(view);
+            statePlus = new StatePlus();
+            view = statePlus.init(view);
         }
         //是否支持侧滑退出
         setSwipeBackEnable(supportSwipeBack());
@@ -63,26 +64,6 @@ public abstract class BaseFragment<T extends BaseContract.BasePresenter> extends
         return view;
     }
 
-    protected View initStateView(View view) {
-        view = StateView.initWithFragment(view);
-        stateView = view.findViewWithTag("StateView");
-        if (stateView != null) {
-            stateView.setOnStateControllerListener(new StateView.OnStateControllerListener() {
-                @Override
-                public void onStateController(View itemView, int itemType) {
-                    if (itemType == StateView.EMPTY) {
-                        itemView.findViewById(R.id.layout_empty).setOnClickListener(BaseFragment.this);
-                    } else if (itemType == StateView.ERROR) {
-                        itemView.findViewById(R.id.layout_error).setOnClickListener(BaseFragment.this);
-                    } else if (itemType == StateView.LOAD) {
-                        itemView.findViewById(R.id.layout_load).setOnClickListener(BaseFragment.this);
-                    }
-                }
-            });
-        }
-        return view;
-    }
-
     protected boolean supportStatusBar() {
         return false;
     }
@@ -96,34 +77,6 @@ public abstract class BaseFragment<T extends BaseContract.BasePresenter> extends
     }
 
     @Override
-    public void showEmpty() {
-        if (stateView != null) {
-            stateView.setState(StateView.EMPTY);
-        }
-    }
-
-    @Override
-    public void showLoading() {
-        if (stateView != null) {
-            stateView.setState(StateView.LOAD);
-        }
-    }
-
-    @Override
-    public void showError() {
-        if (stateView != null) {
-            stateView.setState(StateView.ERROR);
-        }
-    }
-
-    @Override
-    public void showContent() {
-        if (stateView != null) {
-            stateView.setState(StateView.CONTENT);
-        }
-    }
-
-    @Override
     public void toast(String message) {
         ToastUtils.showShort(message);
     }
@@ -134,6 +87,34 @@ public abstract class BaseFragment<T extends BaseContract.BasePresenter> extends
     }
 
     @Override
+    public void showEmpty() {
+        if (statePlus != null) {
+            statePlus.setState(StatePlus.EMPTY);
+        }
+    }
+
+    @Override
+    public void showLoading() {
+        if (statePlus != null) {
+            statePlus.setState(StatePlus.LOAD);
+        }
+    }
+
+    @Override
+    public void showError() {
+        if (statePlus != null) {
+            statePlus.setState(StatePlus.ERROR);
+        }
+    }
+
+    @Override
+    public void showContent() {
+        if (statePlus != null) {
+            statePlus.setState(StatePlus.DATA);
+        }
+    }
+
+    @Override
     public void jumpToLogin() {
         Navigator.openLogin(_mActivity);
     }
@@ -141,20 +122,5 @@ public abstract class BaseFragment<T extends BaseContract.BasePresenter> extends
     @Override
     public <T> LifecycleTransformer<T> bindToLife() {
         return this.bindToLifecycle();
-    }
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.layout_empty:
-                onReload();
-                break;
-            case R.id.layout_error:
-                onReload();
-                break;
-            case R.id.layout_load:
-                showContent();
-                break;
-        }
     }
 }

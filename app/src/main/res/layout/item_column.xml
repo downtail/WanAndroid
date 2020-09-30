@@ -7,12 +7,13 @@
     <TextView
         android:id="@+id/tvCategory"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_30dp"
+        android:layout_height="@dimen/dimen_40dp"
         android:gravity="start|center_vertical"
         android:paddingStart="@dimen/dimen_15dp"
         android:paddingEnd="@dimen/dimen_15dp"
-        android:textColor="@color/color_424242"
-        android:textSize="@dimen/dimen_12sp" />
+        android:textColor="@color/color_171717"
+        android:textSize="@dimen/dimen_14sp"
+        android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvNested"

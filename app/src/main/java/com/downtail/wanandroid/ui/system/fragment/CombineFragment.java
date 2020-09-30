@@ -30,7 +30,6 @@ public class CombineFragment extends BaseFragment<CombinePresenter> implements C
     ViewPager2 pagerColumn;
 
     private CombineColumnAdapter combineColumnAdapter;
-    private CombineFragmentAdapter combineFragmentAdapter;
 
     public static CombineFragment getInstance() {
         Bundle args = new Bundle();
@@ -52,7 +51,7 @@ public class CombineFragment extends BaseFragment<CombinePresenter> implements C
         rvColumn.setLayoutManager(new LinearLayoutManager(_mActivity, RecyclerView.HORIZONTAL, false));
         rvColumn.setAdapter(combineColumnAdapter);
 
-        combineFragmentAdapter = new CombineFragmentAdapter(this);
+        CombineFragmentAdapter combineFragmentAdapter = new CombineFragmentAdapter(this);
         pagerColumn.setOffscreenPageLimit(1);
         pagerColumn.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override

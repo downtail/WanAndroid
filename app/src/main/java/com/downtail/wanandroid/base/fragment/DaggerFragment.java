@@ -5,6 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.downtail.wanandroid.app.App;
 import com.downtail.wanandroid.base.mvp.BaseContract;
 import com.downtail.wanandroid.di.component.DaggerFragmentComponent;
@@ -13,9 +16,6 @@ import com.downtail.wanandroid.di.module.FragmentModule;
 import com.trello.rxlifecycle3.LifecycleTransformer;
 
 import javax.inject.Inject;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 public abstract class DaggerFragment<T extends BaseContract.BasePresenter> extends SwipeBackFragment implements BaseContract.BaseView {
 
@@ -66,26 +66,6 @@ public abstract class DaggerFragment<T extends BaseContract.BasePresenter> exten
         if (mPresenter != null) {
             mPresenter.detachView();
         }
-    }
-
-    @Override
-    public void showEmpty() {
-
-    }
-
-    @Override
-    public void showLoading() {
-
-    }
-
-    @Override
-    public void showError() {
-
-    }
-
-    @Override
-    public void showContent() {
-
     }
 
     @Override

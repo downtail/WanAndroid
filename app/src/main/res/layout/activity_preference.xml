@@ -15,7 +15,7 @@
             android:id="@+id/layoutLogin"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_50dp"
-            android:background="@drawable/bg_rectangle_press_ripple">
+            android:background="@drawable/bg_item">
 
             <ImageView
                 android:layout_width="@dimen/dimen_15dp"
@@ -42,7 +42,7 @@
             android:id="@+id/layoutLogout"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_50dp"
-            android:background="@drawable/bg_rectangle_press_ripple">
+            android:background="@drawable/bg_item">
 
             <TextView
                 android:layout_width="wrap_content"

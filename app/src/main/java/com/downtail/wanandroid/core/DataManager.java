@@ -20,6 +20,7 @@ import com.downtail.wanandroid.ui.system.entity.SystemResponse;
 import java.util.List;
 
 import io.reactivex.Observable;
+import okhttp3.ResponseBody;
 
 
 public class DataManager implements HttpHelper, DatabaseHelper, PreferenceHelper {
@@ -32,6 +33,11 @@ public class DataManager implements HttpHelper, DatabaseHelper, PreferenceHelper
         this.httpHelper = httpHelper;
         this.databaseHelper = databaseHelper;
         this.preferenceHelper = preferenceHelper;
+    }
+
+    @Override
+    public Observable<ResponseBody> downloadLatestApk(String url) {
+        return httpHelper.downloadLatestApk(url);
     }
 
     @Override

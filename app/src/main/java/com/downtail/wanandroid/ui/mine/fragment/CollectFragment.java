@@ -18,9 +18,10 @@ import com.downtail.wanandroid.ui.project.entity.ArticleMultipleEntity;
 import com.downtail.wanandroid.ui.project.entity.ArticleResponse;
 import com.downtail.wanandroid.ui.project.entity.Paging;
 import com.downtail.wanandroid.widget.dialog.EditDialog;
-import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
+import com.scwang.smart.refresh.layout.SmartRefreshLayout;
+import com.scwang.smart.refresh.layout.api.RefreshLayout;
+import com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener;
+
 
 import java.util.List;
 

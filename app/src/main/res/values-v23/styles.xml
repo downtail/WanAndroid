@@ -1,0 +1,10 @@
+<resources>
+
+    <style name="MainTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowBackground">@color/color_dcdcdc</item>
+        <item name="android:statusBarColor">@color/color_ffffff</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+</resources>

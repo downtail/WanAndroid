@@ -44,7 +44,7 @@ public class ArticleAdapter extends BaseMultiItemQuickAdapter<ArticleMultipleEnt
                 baseViewHolder.setGone(R.id.tvDescription, true);
             } else {
                 baseViewHolder.setGone(R.id.tvDescription, false);
-                baseViewHolder.setText(R.id.tvDescription, desc);
+                baseViewHolder.setText(R.id.tvDescription, desc.replace("<p>", "").replace("</p>", "").trim());
             }
             baseViewHolder.setText(R.id.tvDate, article.getNiceShareDate());
             baseViewHolder.getView(R.id.ivCollect).setSelected(article.isCollect());

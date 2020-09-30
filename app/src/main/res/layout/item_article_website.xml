@@ -14,7 +14,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_rectangle_press_ripple"
+        android:background="@drawable/bg_item"
         android:paddingBottom="@dimen/dimen_15dp">
 
         <ImageView

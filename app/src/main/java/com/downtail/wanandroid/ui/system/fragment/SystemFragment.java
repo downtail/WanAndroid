@@ -3,6 +3,10 @@ package com.downtail.wanandroid.ui.system.fragment;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.downtail.wanandroid.R;
@@ -14,9 +18,6 @@ import com.downtail.wanandroid.ui.system.entity.SystemResponse;
 
 import java.util.List;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 
 public class SystemFragment extends BaseFragment<SystemPresenter> implements SystemContract.View,
@@ -46,7 +47,7 @@ public class SystemFragment extends BaseFragment<SystemPresenter> implements Sys
         systemAdapter.setOnItemClickListener(this);
         rvSystem.setAdapter(systemAdapter);
 
-        mPresenter.getColumnData();
+        onReload();
     }
 
     @Override
@@ -56,7 +57,7 @@ public class SystemFragment extends BaseFragment<SystemPresenter> implements Sys
 
     @Override
     public void onReload() {
-
+        mPresenter.getColumnData();
     }
 
     @Override

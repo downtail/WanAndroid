@@ -10,13 +10,18 @@ public abstract class DefaultObserver<T> implements Observer<T> {
 
     private BaseContract.BaseView mView;
 
+    public DefaultObserver() {
+    }
+
     public DefaultObserver(BaseContract.BaseView mView) {
         this.mView = mView;
     }
 
     @Override
     public void onSubscribe(Disposable d) {
-
+        if (mView != null) {
+            mView.showLoading();
+        }
     }
 
     @Override
@@ -28,11 +33,16 @@ public abstract class DefaultObserver<T> implements Observer<T> {
 
     @Override
     public void onError(Throwable e) {
-        ExceptionHandler.handleException(mView, e);
+        if (mView != null) {
+            mView.showContent();
+            ExceptionHandler.handleException(mView, e);
+        }
     }
 
     @Override
     public void onComplete() {
-
+        if (mView != null) {
+            mView.showContent();
+        }
     }
 }

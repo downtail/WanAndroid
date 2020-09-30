@@ -4,7 +4,7 @@ public enum Error {
 
     SUCCESS(0, "操作成功"),
     NO_DATA(-2, "暂无数据"),
-    ;
+    FILE_NOT_EXIST(-1, "找不到文件");
     private int errCode;
     private String errMsg;
 
@@ -19,11 +19,6 @@ public enum Error {
 
     public String getErrMsg() {
         return errMsg;
-    }
-
-    public Error setErrMsg(String errMsg) {
-        this.errMsg = errMsg;
-        return this;
     }
 
     @Override

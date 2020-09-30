@@ -4,29 +4,37 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
+import androidx.annotation.LayoutRes;
+import androidx.annotation.Nullable;
+
 import com.blankj.utilcode.util.ToastUtils;
 import com.downtail.wanandroid.R;
 import com.downtail.wanandroid.app.Navigator;
 import com.downtail.wanandroid.base.mvp.BaseContract;
-import com.downtail.wanandroid.widget.StateView;
+import com.downtail.wanandroid.entity.LogoutEvent;
+import com.downtail.wanandroid.utils.AppUtil;
+import com.downtail.wanandroid.widget.StatePlus;
 import com.downtail.wanandroid.widget.plus.StatusBarPlus;
 import com.trello.rxlifecycle3.LifecycleTransformer;
 
-import androidx.annotation.LayoutRes;
-import androidx.annotation.Nullable;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public abstract class BaseActivity<T extends BaseContract.BasePresenter> extends DaggerActivity<T> implements View.OnClickListener {
+public abstract class BaseActivity<T extends BaseContract.BasePresenter> extends PermissionActivity<T> {
 
     private Unbinder unbinder;
     protected Activity mActivity;
-    protected StateView stateView;
+    protected StatePlus statePlus;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -34,20 +42,26 @@ public abstract class BaseActivity<T extends BaseContract.BasePresenter> extends
         //在绑定布局之前
         initBeforeBindLayout();
         //引用布局
-        setContentView(getLayoutId());
+        View rootView = LayoutInflater.from(this).inflate(getLayoutId(), null, false);
+        if (supportStateController()) {
+            rootView.setTag("ContentView");
+            statePlus = new StatePlus();
+            rootView = statePlus.init(rootView);
+        }
+        setContentView(rootView);
         //引用
         mActivity = this;
+        //Activity管理类
+        AppUtil.getInstance().push(this);
+        //注册EventBus
+        registerEventBus();
         //设置屏幕方向
         setScreenOrientation();
         //适配状态栏
         initStatusBar();
-        //页面状态控制
-        if (supportStateController()) {
-            initStateView();
-        }
         //是否支持侧滑退出
         setSwipeBackEnable(supportSwipeBack());
-        //butterknife
+        //ButterKnife
         unbinder = ButterKnife.bind(this);
         //初始化操作
         initEvents();
@@ -56,8 +70,9 @@ public abstract class BaseActivity<T extends BaseContract.BasePresenter> extends
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        stateView = null;
         unbinder.unbind();
+        unregisterEventBus();
+        AppUtil.getInstance().pop(mActivity);
     }
 
     @LayoutRes
@@ -69,33 +84,29 @@ public abstract class BaseActivity<T extends BaseContract.BasePresenter> extends
 
     }
 
+    protected void registerEventBus() {
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this);
+        }
+    }
+
+    protected void unregisterEventBus() {
+        if (EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().unregister(this);
+        }
+    }
+
     protected void setScreenOrientation() {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_BEHIND);
     }
 
     protected void initStatusBar() {
-        StatusBarPlus.setColor(this, getResources().getColor(R.color.colorPrimaryDark), true);
+        StatusBarPlus.setColor(this, getResources().getColor(R.color.color_ffffff));
         StatusBarPlus.setStatusBarMode(this, true);
     }
 
     protected boolean supportStateController() {
         return true;
-    }
-
-    protected void initStateView() {
-        stateView = StateView.init(mActivity)
-                .setOnStateControllerListener(new StateView.OnStateControllerListener() {
-                    @Override
-                    public void onStateController(View itemView, int itemType) {
-                        if (itemType == StateView.EMPTY) {
-                            itemView.findViewById(R.id.layout_empty).setOnClickListener(BaseActivity.this);
-                        } else if (itemType == StateView.ERROR) {
-                            itemView.findViewById(R.id.layout_error).setOnClickListener(BaseActivity.this);
-                        } else if (itemType == StateView.LOAD) {
-                            itemView.findViewById(R.id.layout_load).setOnClickListener(BaseActivity.this);
-                        }
-                    }
-                });
     }
 
     protected boolean supportSwipeBack() {
@@ -104,29 +115,29 @@ public abstract class BaseActivity<T extends BaseContract.BasePresenter> extends
 
     @Override
     public void showEmpty() {
-        if (stateView != null) {
-            stateView.setState(StateView.EMPTY);
+        if (statePlus != null) {
+            statePlus.setState(StatePlus.EMPTY);
         }
     }
 
     @Override
     public void showLoading() {
-        if (stateView != null) {
-            stateView.setState(StateView.LOAD);
+        if (statePlus != null) {
+            statePlus.setState(StatePlus.LOAD);
         }
     }
 
     @Override
     public void showError() {
-        if (stateView != null) {
-            stateView.setState(StateView.ERROR);
+        if (statePlus != null) {
+            statePlus.setState(StatePlus.ERROR);
         }
     }
 
     @Override
     public void showContent() {
-        if (stateView != null) {
-            stateView.setState(StateView.CONTENT);
+        if (statePlus != null) {
+            statePlus.setState(StatePlus.DATA);
         }
     }
 
@@ -148,21 +159,6 @@ public abstract class BaseActivity<T extends BaseContract.BasePresenter> extends
     @Override
     public <T> LifecycleTransformer<T> bindToLife() {
         return this.bindToLifecycle();
-    }
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.layout_empty:
-                onReload();
-                break;
-            case R.id.layout_error:
-                onReload();
-                break;
-            case R.id.layout_load:
-                showContent();
-                break;
-        }
     }
 
     @Override
@@ -196,6 +192,15 @@ public abstract class BaseActivity<T extends BaseContract.BasePresenter> extends
         InputMethodManager im = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         if (im != null) {
             im.hideSoftInputFromWindow(view.getApplicationWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void getLogoutEvent(LogoutEvent event) {
+        Activity theTop = AppUtil.getInstance().peek();
+        if (this == theTop) {
+            toast(event.getMessage());
+            jumpToLogin();
         }
     }
 }

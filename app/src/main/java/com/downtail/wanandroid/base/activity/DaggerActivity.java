@@ -5,7 +5,6 @@ import android.os.Bundle;
 import com.downtail.wanandroid.app.App;
 import com.downtail.wanandroid.base.mvp.BaseContract;
 import com.downtail.wanandroid.di.component.ActivityComponent;
-
 import com.downtail.wanandroid.di.component.DaggerActivityComponent;
 import com.downtail.wanandroid.di.module.ActivityModule;
 import com.trello.rxlifecycle3.LifecycleTransformer;
@@ -55,26 +54,6 @@ public abstract class DaggerActivity<T extends BaseContract.BasePresenter> exten
         if (mPresenter != null) {
             mPresenter.detachView();
         }
-    }
-
-    @Override
-    public void showEmpty() {
-
-    }
-
-    @Override
-    public void showLoading() {
-
-    }
-
-    @Override
-    public void showError() {
-
-    }
-
-    @Override
-    public void showContent() {
-
     }
 
     @Override

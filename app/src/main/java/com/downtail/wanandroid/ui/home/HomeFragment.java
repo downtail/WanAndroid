@@ -4,6 +4,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.CompositePageTransformer;
+import androidx.viewpager2.widget.MarginPageTransformer;
+import androidx.viewpager2.widget.ViewPager2;
+
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
@@ -11,6 +19,7 @@ import com.downtail.wanandroid.R;
 import com.downtail.wanandroid.app.Navigator;
 import com.downtail.wanandroid.base.fragment.BaseFragment;
 import com.downtail.wanandroid.contract.home.HomeContract;
+import com.downtail.wanandroid.core.http.DefaultObserver;
 import com.downtail.wanandroid.presenter.home.HomePresenter;
 import com.downtail.wanandroid.ui.project.adapter.ArticleAdapter;
 import com.downtail.wanandroid.ui.project.entity.ArticleMultipleEntity;
@@ -18,34 +27,39 @@ import com.downtail.wanandroid.ui.project.entity.ArticleResponse;
 import com.downtail.wanandroid.ui.project.entity.Paging;
 import com.downtail.wanandroid.utils.DisplayUtil;
 import com.downtail.wanandroid.widget.ScalePageTransformer;
-import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
+import com.google.android.material.appbar.AppBarLayout;
+import com.scwang.smart.refresh.layout.SmartRefreshLayout;
+import com.scwang.smart.refresh.layout.api.RefreshLayout;
+import com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.widget.CompositePageTransformer;
-import androidx.viewpager2.widget.MarginPageTransformer;
-import androidx.viewpager2.widget.ViewPager2;
 import butterknife.BindView;
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 public class HomeFragment extends BaseFragment<HomePresenter> implements HomeContract.View,
         OnRefreshLoadMoreListener, OnItemClickListener, OnItemChildClickListener {
 
-    @BindView(R.id.tvAction)
-    TextView tvAction;
     @BindView(R.id.smartRefreshLayout)
     SmartRefreshLayout smartRefreshLayout;
+    @BindView(R.id.appbarLayout)
+    AppBarLayout appBarLayout;
     @BindView(R.id.pagerBanner)
     ViewPager2 pagerBanner;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.tvAction)
+    TextView tvAction;
     @BindView(R.id.rvArticle)
     RecyclerView rvArticle;
 
     private BannerAdapter bannerAdapter;
     private ArticleAdapter articleAdapter;
+    private Disposable timer;
     private int page = 0;
 
     public static HomeFragment getInstance() {
@@ -63,6 +77,24 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCon
     @Override
     protected void initEvents() {
         tvAction.setText(R.string.item_home);
+
+        smartRefreshLayout.setEnableRefresh(true);
+        smartRefreshLayout.setEnableLoadMore(true);
+        smartRefreshLayout.setEnableAutoLoadMore(true);
+        smartRefreshLayout.setOnRefreshLoadMoreListener(this);
+
+        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                int totalScrollRange = appBarLayout.getTotalScrollRange();
+                if (Math.abs(verticalOffset) >= totalScrollRange) {
+                    toolbar.setVisibility(View.VISIBLE);
+                } else {
+                    toolbar.setVisibility(View.GONE);
+                }
+            }
+        });
+
         bannerAdapter = new BannerAdapter(R.layout.item_banner);
         bannerAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
@@ -70,6 +102,22 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCon
 
             }
         });
+        pagerBanner.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                super.onPageScrollStateChanged(state);
+                if (state == ViewPager2.SCROLL_STATE_IDLE) {
+                    int currentIndex = pagerBanner.getCurrentItem();
+                    if (currentIndex == 0) {
+                        pagerBanner.setCurrentItem(bannerAdapter.getItemCount() - 2, false);
+                    } else if (currentIndex == bannerAdapter.getItemCount() - 1) {
+                        pagerBanner.setCurrentItem(1, false);
+                    }
+                }
+            }
+        });
+        pagerBanner.setOffscreenPageLimit(2);
         pagerBanner.setAdapter(bannerAdapter);
         CompositePageTransformer transformer = new CompositePageTransformer();
         transformer.addTransformer(new MarginPageTransformer(DisplayUtil.dip2px(_mActivity, 10)));
@@ -78,14 +126,9 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCon
         View child = pagerBanner.getChildAt(0);
         if (child instanceof RecyclerView) {
             RecyclerView recyclerView = (RecyclerView) child;
-            recyclerView.setPadding(DisplayUtil.dip2px(_mActivity, 10), 0, DisplayUtil.dip2px(_mActivity, 10), 0);
+            recyclerView.setPadding(DisplayUtil.dip2px(_mActivity, 20), 0, DisplayUtil.dip2px(_mActivity, 20), 0);
             recyclerView.setClipToPadding(false);
         }
-
-        smartRefreshLayout.setEnableRefresh(true);
-        smartRefreshLayout.setEnableLoadMore(true);
-        smartRefreshLayout.setEnableAutoLoadMore(true);
-        smartRefreshLayout.setOnRefreshLoadMoreListener(this);
 
         articleAdapter = new ArticleAdapter();
         articleAdapter.setOnItemClickListener(this);
@@ -94,8 +137,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCon
         rvArticle.setLayoutManager(new LinearLayoutManager(_mActivity));
         rvArticle.setAdapter(articleAdapter);
 
-        mPresenter.getBannerData();
-        mPresenter.getAdvancedArticleData(0);
+        onReload();
     }
 
     @Override
@@ -105,7 +147,14 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCon
 
     @Override
     public void onReload() {
+        mPresenter.getBannerData();
+        mPresenter.getAdvancedArticleData(0);
+    }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        stopTimer();
     }
 
     @Override
@@ -154,13 +203,67 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCon
         }
     }
 
+    private void startTimer() {
+        int itemCount = bannerAdapter.getItemCount();
+        if (itemCount > 3) {
+            Observable.interval(5, 5, TimeUnit.SECONDS)
+                    .subscribeOn(Schedulers.computation())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new DefaultObserver<Long>() {
+
+                        @Override
+                        public void onSubscribe(Disposable d) {
+                            super.onSubscribe(d);
+                            timer = d;
+                        }
+
+                        @Override
+                        public void onSuccess(Long data) {
+                            int currentIndex = pagerBanner.getCurrentItem();
+                            if (currentIndex < bannerAdapter.getItemCount() - 1) {
+                                pagerBanner.setCurrentItem(currentIndex + 1);
+                            }
+                        }
+                    });
+        }
+    }
+
+    private void stopTimer() {
+        if (timer != null && !timer.isDisposed()) {
+            timer.dispose();
+            timer = null;
+        }
+    }
+
+    @Override
+    public void onSupportVisible() {
+        super.onSupportVisible();
+        startTimer();
+    }
+
+    @Override
+    public void onSupportInvisible() {
+        super.onSupportInvisible();
+        stopTimer();
+    }
+
     @Override
     public void loadBannerData(List<BannerResponse> data) {
+        if (data.size() > 1) {
+            BannerResponse firstElement = data.get(0);
+            BannerResponse lastElement = data.get(data.size() - 1);
+            data.add(0, lastElement);
+            data.add(firstElement);
+        }
         bannerAdapter.setNewInstance(data);
+        pagerBanner.setCurrentItem(1, false);
+        startTimer();
     }
 
     @Override
     public void loadAdvancedArticleData(Paging<ArticleMultipleEntity> pagingData) {
+        smartRefreshLayout.finishRefresh();
+        smartRefreshLayout.finishLoadMore();
         List<ArticleMultipleEntity> datas = pagingData.getDatas();
         if (datas != null && datas.size() > 0) {
             page = pagingData.getCurPage();
@@ -180,7 +283,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCon
             ArticleResponse article = item.getArticle();
             if (article != null) {
                 article.setCollect(isCollect);
-                articleAdapter.notifyItemChanged(position);
+                articleAdapter.notifyItemRangeChanged(position, 1);
                 if (isCollect) {
                     toast(R.string.confirmCollectSuccess);
                 } else {

@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.downtail.wanandroid">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".app.App"
         android:allowBackup="true"
@@ -11,6 +13,14 @@
         android:roundIcon="@drawable/app_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <meta-data
+            android:name="design_height_in_dp"
+            android:value="640" />
+        <meta-data
+            android:name="design_width_in_dp"
+            android:value="360" />
+
         <activity
             android:name=".ui.main.SplashActivity"
             android:theme="@style/SplashTheme">
@@ -23,6 +33,7 @@
 
         <activity
             android:name=".ui.main.MainActivity"
+            android:theme="@style/MainTheme"
             android:launchMode="singleTask" />
 
         <activity
@@ -55,14 +66,5 @@
             android:launchMode="singleTask"/>
 
     </application>
-
-    <meta-data
-        android:name="design_height_in_dp"
-        android:value="640" />
-    <meta-data
-        android:name="design_width_in_dp"
-        android:value="360" />
-
-    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

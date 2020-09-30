@@ -4,17 +4,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.downtail.wanandroid.R;
-import com.downtail.wanandroid.base.activity.BaseActivity;
-import com.downtail.wanandroid.contract.main.MainContract;
-import com.downtail.wanandroid.presenter.main.MainPresenter;
-import com.downtail.wanandroid.utils.ExitUtil;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-
 import androidx.annotation.NonNull;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager2.widget.ViewPager2;
+
+import com.downtail.wanandroid.R;
+import com.downtail.wanandroid.base.activity.BaseActivity;
+import com.downtail.wanandroid.contract.main.MainContract;
+import com.downtail.wanandroid.presenter.main.MainPresenter;
+import com.downtail.wanandroid.utils.AppUtil;
+import com.downtail.wanandroid.utils.ExitUtil;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import butterknife.BindView;
 
 public class MainActivity extends BaseActivity<MainPresenter> implements MainContract.View, BottomNavigationView.OnNavigationItemSelectedListener {
@@ -91,7 +93,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     @Override
     protected void initStatusBar() {
-        super.initStatusBar();
+        //super.initStatusBar();
     }
 
     @Override
@@ -105,8 +107,8 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
             drawerLayout.closeDrawer(GravityCompat.START);
             return;
         }
-        if (ExitUtil.exit()) {
-            System.exit(0);
+        if (ExitUtil.enableExit()) {
+            AppUtil.getInstance().exitApp();
         } else {
             toast(R.string.exitAgain);
         }

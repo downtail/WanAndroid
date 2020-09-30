@@ -12,11 +12,13 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.downtail.wanandroid.R;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
+
+
+import com.downtail.wanandroid.R;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
@@ -28,6 +30,12 @@ public abstract class BaseDialog extends DialogFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setStyle(STYLE_NO_TITLE, R.style.DialogTheme);
+    }
+
+    @NonNull
+    @Override
+    public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+        return new WeakDialog(requireContext(), getTheme());
     }
 
     @Nullable
