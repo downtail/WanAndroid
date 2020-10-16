@@ -2,7 +2,6 @@ package com.downtail.wanandroid.ui.main;
 
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.core.view.GravityCompat;
@@ -10,19 +9,20 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.downtail.wanandroid.R;
+import com.downtail.wanandroid.app.Navigator;
 import com.downtail.wanandroid.base.activity.BaseActivity;
 import com.downtail.wanandroid.contract.main.MainContract;
 import com.downtail.wanandroid.presenter.main.MainPresenter;
 import com.downtail.wanandroid.utils.AppUtil;
 import com.downtail.wanandroid.utils.ExitUtil;
+import com.downtail.wanandroid.widget.plus.StatusBarPlus;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity<MainPresenter> implements MainContract.View, BottomNavigationView.OnNavigationItemSelectedListener {
 
-    @BindView(R.id.tvAction)
-    TextView tvAction;
     @BindView(R.id.drawerLayout)
     DrawerLayout drawerLayout;
     @BindView(R.id.contentView)
@@ -66,7 +66,6 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
             }
         });
-        tvAction.setText(R.string.item_setting);
 
         navigationView.setOnNavigationItemSelectedListener(this);
         MainFragmentAdapter mainFragmentAdapter = new MainFragmentAdapter(this);
@@ -93,7 +92,8 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     @Override
     protected void initStatusBar() {
-        //super.initStatusBar();
+        StatusBarPlus.setTransparent(this);
+        StatusBarPlus.setStatusBarMode(this, true);
     }
 
     @Override
@@ -129,10 +129,33 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
             case R.id.item_public:
                 pagerContainer.setCurrentItem(3, false);
                 break;
-            case R.id.item_setting:
-                pagerContainer.setCurrentItem(4, false);
-                break;
         }
         return true;
+    }
+
+    @OnClick({R.id.ivClient, R.id.layoutRank, R.id.layoutSetting, R.id.layoutCollect})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.ivClient:
+                whenAvatarClick();
+                break;
+            case R.id.layoutRank:
+                Navigator.openRank(mActivity);
+                break;
+            case R.id.layoutSetting:
+                Navigator.openSetting(mActivity);
+                break;
+            case R.id.layoutCollect:
+                Navigator.openCollect(mActivity);
+                break;
+        }
+    }
+
+    private void whenAvatarClick() {
+        if (mPresenter.getUserLoginStatus()) {
+
+        } else {
+            jumpToLogin();
+        }
     }
 }

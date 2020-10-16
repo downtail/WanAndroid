@@ -10,6 +10,8 @@ import com.downtail.wanandroid.R;
 import com.downtail.wanandroid.app.Navigator;
 import com.downtail.wanandroid.base.fragment.BaseFragment;
 import com.downtail.wanandroid.contract.service.ServiceContract;
+import com.downtail.wanandroid.entity.db.Author;
+import com.downtail.wanandroid.entity.response.ServiceResponse;
 import com.downtail.wanandroid.presenter.service.ServicePresenter;
 import com.downtail.wanandroid.widget.DragItemTouchHelper;
 
@@ -17,6 +19,8 @@ import java.util.Collections;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -56,14 +60,16 @@ public class ServiceFragment extends BaseFragment<ServicePresenter> implements S
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new DragItemTouchHelper(new DragItemTouchHelper.DragListener() {
             @Override
             public void onItemDrag(int startIndex, int endIndex) {
-                List<ServiceResponse> data = serviceAdapter.getData();
+                List<Author> data = serviceAdapter.getData();
+                Long id = data.get(startIndex).getId();
+                data.get(startIndex).setId(data.get(endIndex).getId());
+                data.get(endIndex).setId(id);
                 Collections.swap(data, startIndex, endIndex);
                 serviceAdapter.notifyItemMoved(startIndex, endIndex);
+                mPresenter.saveAuthorList(data);
             }
         }));
         itemTouchHelper.attachToRecyclerView(rvService);
-
-        mPresenter.getServiceColumnData();
     }
 
     @Override
@@ -77,15 +83,27 @@ public class ServiceFragment extends BaseFragment<ServicePresenter> implements S
     }
 
     @Override
+    protected boolean supportStatusBar() {
+        return true;
+    }
+
+    @Override
+    public void onLazyInitView(@Nullable Bundle savedInstanceState) {
+        super.onLazyInitView(savedInstanceState);
+
+        mPresenter.getServiceColumnData();
+    }
+
+    @Override
     public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {
-        ServiceResponse item = serviceAdapter.getItem(position);
+        Author item = serviceAdapter.getItem(position);
         if (item != null) {
-            Navigator.openClient(_mActivity, item.getId(), item.getName());
+            Navigator.openClient(_mActivity, item.getAuthorId(), item.getName());
         }
     }
 
     @Override
-    public void loadProviderData(List<ServiceResponse> data) {
+    public void loadAuthorData(List<Author> data) {
         serviceAdapter.setNewInstance(data);
     }
 }

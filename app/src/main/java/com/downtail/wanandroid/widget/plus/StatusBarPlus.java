@@ -64,7 +64,7 @@ public class StatusBarPlus {
             if (pure) {
                 setColorAboveLollipop(activity, color);
             } else {
-                setTransparentAboveLollipop(activity, color);
+                setTransparentAboveLollipop(activity, Color.TRANSPARENT);
                 showStatusBarView(activity, color);
             }
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {

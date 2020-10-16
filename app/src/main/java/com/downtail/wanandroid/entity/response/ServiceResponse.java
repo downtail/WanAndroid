@@ -1,4 +1,4 @@
-package com.downtail.wanandroid.ui.service;
+package com.downtail.wanandroid.entity.response;
 
 import java.io.Serializable;
 import java.util.List;

@@ -10,5 +10,6 @@ public interface MainContract {
 
     interface Presenter extends BaseContract.BasePresenter<View>{
 
+        boolean getUserLoginStatus();
     }
 }

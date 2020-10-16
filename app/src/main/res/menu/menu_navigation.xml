@@ -20,9 +20,4 @@
         android:id="@+id/item_public"
         android:icon="@drawable/image_navigation_public"
         android:title="@string/item_public" />
-
-    <item
-        android:id="@+id/item_setting"
-        android:icon="@drawable/image_navigation_mine"
-        android:title="@string/item_setting" />
 </menu>

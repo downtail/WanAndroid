@@ -1,4 +1,4 @@
-package com.downtail.wanandroid.entity;
+package com.downtail.wanandroid.entity.event;
 
 /**
  * NursingWorker

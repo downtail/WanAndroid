@@ -2,6 +2,8 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'org.greenrobot.greendao'
+
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
     buildToolsVersion "29.0.2"
@@ -33,6 +35,15 @@ android {
         disable 'GoogleAppIndexingWarning'
     }
 
+}
+
+greendao {
+    schemaVersion 1 //数据库版本号
+    daoPackage 'com.downtail.wanandroid.entity.db'
+    //设置DaoMaster、DaoSession、Dao 包名
+    targetGenDir 'src/main/java'//设置DaoMaster、DaoSession、Dao目录,请注意，这里路径用/不要用.
+    generateTests false //设置为true以自动生成单元测试。
+    targetGenDirTests 'src/main/java' //应存储生成的单元测试的基本目录。默认为 src / androidTest / java。
 }
 
 dependencies {
@@ -68,14 +79,16 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:${rootProject.ext.dependencies.glide}"
     annotationProcessor "com.github.bumptech.glide:compiler:${rootProject.ext.dependencies.glide}"
     implementation "com.google.android:flexbox:${rootProject.ext.dependencies.flexbox}"
-    implementation  "com.scwang.smart:refresh-layout-kernel:${rootProject.ext.dependencies.refresh}"
-    implementation  "com.scwang.smart:refresh-header-material:${rootProject.ext.dependencies.refresh}"   //谷歌刷新头
-    implementation  "com.scwang.smart:refresh-footer-classics:${rootProject.ext.dependencies.refresh}"
+    implementation "com.scwang.smart:refresh-layout-kernel:${rootProject.ext.dependencies.refresh}"
+    implementation "com.scwang.smart:refresh-header-material:${rootProject.ext.dependencies.refresh}"
+    //谷歌刷新头
+    implementation "com.scwang.smart:refresh-footer-classics:${rootProject.ext.dependencies.refresh}"
     implementation "jp.wasabeef:glide-transformations:${rootProject.ext.dependencies.transformations}"
     implementation "de.hdodenhof:circleimageview:${rootProject.ext.dependencies.circle}"
     implementation "com.tencent.sonic:sdk:${rootProject.ext.dependencies.vassonic}"
     implementation "org.greenrobot:eventbus:${rootProject.ext.dependencies.eventbus}"
     //google权限库
     implementation 'pub.devrel:easypermissions:3.0.0'
+    implementation 'org.greenrobot:greendao:3.3.0'
     implementation 'com.github.downtail:ItemDecorationPlus:0.2.0'
 }

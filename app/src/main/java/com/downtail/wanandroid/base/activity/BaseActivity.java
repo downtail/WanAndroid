@@ -17,7 +17,7 @@ import com.blankj.utilcode.util.ToastUtils;
 import com.downtail.wanandroid.R;
 import com.downtail.wanandroid.app.Navigator;
 import com.downtail.wanandroid.base.mvp.BaseContract;
-import com.downtail.wanandroid.entity.LogoutEvent;
+import com.downtail.wanandroid.entity.event.LogoutEvent;
 import com.downtail.wanandroid.utils.AppUtil;
 import com.downtail.wanandroid.widget.StatePlus;
 import com.downtail.wanandroid.widget.plus.StatusBarPlus;

@@ -80,6 +80,11 @@ public class ProjectFragment extends BaseFragment<ProjectPresenter> implements P
     }
 
     @Override
+    protected boolean supportStatusBar() {
+        return true;
+    }
+
+    @Override
     public void loadProjectCategoryData(List<CategoryResponse> data) {
         projectColumnAdapter.setNewInstance(data);
         projectPagerAdapter.setData(data);

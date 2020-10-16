@@ -5,6 +5,7 @@ import com.downtail.wanandroid.core.db.DatabaseHelper;
 import com.downtail.wanandroid.core.http.BaseResponse;
 import com.downtail.wanandroid.core.http.HttpHelper;
 import com.downtail.wanandroid.core.preference.PreferenceHelper;
+import com.downtail.wanandroid.entity.db.Author;
 import com.downtail.wanandroid.ui.home.BannerResponse;
 import com.downtail.wanandroid.ui.main.UserEntity;
 import com.downtail.wanandroid.ui.mine.entity.RankResponse;
@@ -13,7 +14,7 @@ import com.downtail.wanandroid.ui.mine.entity.WebsiteResponse;
 import com.downtail.wanandroid.ui.project.entity.ArticleResponse;
 import com.downtail.wanandroid.ui.project.entity.CategoryResponse;
 import com.downtail.wanandroid.ui.project.entity.Paging;
-import com.downtail.wanandroid.ui.service.ServiceResponse;
+import com.downtail.wanandroid.entity.response.ServiceResponse;
 import com.downtail.wanandroid.ui.system.entity.NavigationResponse;
 import com.downtail.wanandroid.ui.system.entity.SystemResponse;
 
@@ -163,5 +164,15 @@ public class DataManager implements HttpHelper, DatabaseHelper, PreferenceHelper
     @Override
     public Observable<BaseResponse<Paging<ArticleResponse>>> getClientArticleByKeyword(int id, int page, String keyword) {
         return httpHelper.getClientArticleByKeyword(id, page, keyword);
+    }
+
+    @Override
+    public Observable<List<Author>> getAuthorList() {
+        return databaseHelper.getAuthorList();
+    }
+
+    @Override
+    public void saveAuthorList(List<Author> data) {
+        databaseHelper.saveAuthorList(data);
     }
 }

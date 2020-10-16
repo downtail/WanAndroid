@@ -8,7 +8,7 @@ import com.downtail.wanandroid.ui.mine.entity.WebsiteResponse;
 import com.downtail.wanandroid.ui.project.entity.ArticleResponse;
 import com.downtail.wanandroid.ui.project.entity.CategoryResponse;
 import com.downtail.wanandroid.ui.project.entity.Paging;
-import com.downtail.wanandroid.ui.service.ServiceResponse;
+import com.downtail.wanandroid.entity.response.ServiceResponse;
 import com.downtail.wanandroid.ui.system.entity.NavigationResponse;
 import com.downtail.wanandroid.ui.system.entity.SystemResponse;
 

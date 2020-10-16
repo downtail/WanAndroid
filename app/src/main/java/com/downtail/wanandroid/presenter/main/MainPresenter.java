@@ -10,4 +10,9 @@ public class MainPresenter extends BasePresenter<MainContract.View> implements M
     @Inject
     public MainPresenter() {
     }
+
+    @Override
+    public boolean getUserLoginStatus() {
+        return dataManager.getLoginStatus();
+    }
 }

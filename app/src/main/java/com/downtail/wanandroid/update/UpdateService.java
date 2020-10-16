@@ -24,8 +24,8 @@ import com.downtail.wanandroid.core.DataManager;
 import com.downtail.wanandroid.core.http.DefaultObserver;
 import com.downtail.wanandroid.core.http.Error;
 import com.downtail.wanandroid.core.http.ServerException;
-import com.downtail.wanandroid.entity.ProgressEvent;
-import com.downtail.wanandroid.entity.UnbindEvent;
+import com.downtail.wanandroid.entity.event.ProgressEvent;
+import com.downtail.wanandroid.entity.event.UnbindEvent;
 import com.downtail.wanandroid.utils.UriUtil;
 
 import org.greenrobot.eventbus.EventBus;

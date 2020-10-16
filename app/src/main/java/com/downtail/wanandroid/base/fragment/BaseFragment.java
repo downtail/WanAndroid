@@ -1,5 +1,6 @@
 package com.downtail.wanandroid.base.fragment;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import com.blankj.utilcode.util.ToastUtils;
 import com.downtail.wanandroid.app.Navigator;
 import com.downtail.wanandroid.base.mvp.BaseContract;
 import com.downtail.wanandroid.widget.StatePlus;
+import com.downtail.wanandroid.widget.plus.StatusBarPlus;
 import com.trello.rxlifecycle3.LifecycleTransformer;
 
 import butterknife.ButterKnife;
@@ -61,6 +63,7 @@ public abstract class BaseFragment<T extends BaseContract.BasePresenter> extends
     protected abstract void initEvents();
 
     protected View initStatusBar(View view) {
+        view = StatusBarPlus.setColor(view, Color.WHITE);
         return view;
     }
 

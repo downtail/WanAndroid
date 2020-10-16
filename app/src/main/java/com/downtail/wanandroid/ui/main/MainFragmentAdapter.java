@@ -1,15 +1,14 @@
 package com.downtail.wanandroid.ui.main;
 
-import com.downtail.wanandroid.ui.home.HomeFragment;
-import com.downtail.wanandroid.ui.mine.fragment.SettingFragment;
-import com.downtail.wanandroid.ui.project.fragment.ProjectFragment;
-import com.downtail.wanandroid.ui.service.ServiceFragment;
-import com.downtail.wanandroid.ui.system.fragment.CombineFragment;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
+
+import com.downtail.wanandroid.ui.home.HomeFragment;
+import com.downtail.wanandroid.ui.project.fragment.ProjectFragment;
+import com.downtail.wanandroid.ui.service.ServiceFragment;
+import com.downtail.wanandroid.ui.system.fragment.CombineFragment;
 
 public class MainFragmentAdapter extends FragmentStateAdapter {
 
@@ -26,14 +25,12 @@ public class MainFragmentAdapter extends FragmentStateAdapter {
             return CombineFragment.getInstance();
         } else if (position == 2) {
             return ProjectFragment.getInstance();
-        } else if (position == 3) {
-            return ServiceFragment.getInstance();
         }
-        return SettingFragment.getInstance();
+        return ServiceFragment.getInstance();
     }
 
     @Override
     public int getItemCount() {
-        return 5;
+        return 4;
     }
 }

@@ -44,8 +44,6 @@ public class RecordActivity extends BaseActivity<RecordPresenter> implements Rec
 
     @Override
     protected void initEvents() {
-        tvAction.setText(R.string.item_setting);
-
         smartRefreshLayout.setEnableRefresh(true);
         smartRefreshLayout.setEnableLoadMore(true);
         smartRefreshLayout.setEnableAutoLoadMore(true);

@@ -47,7 +47,6 @@ public class RankActivity extends BaseActivity<RankPresenter> implements RankCon
     @Override
     protected void initEvents() {
         tvAction.setText(R.string.mine_rank);
-        tvPlus.setText(R.string.item_setting);
 
         smartRefreshLayout.setEnableRefresh(true);
         smartRefreshLayout.setEnableLoadMore(true);

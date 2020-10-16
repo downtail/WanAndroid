@@ -5,6 +5,8 @@ public class Constants {
     //-----------------------------------------------配置模块-----------------------------------------------
     //BASE_URL
     public static final String BASE_URL = "https://www.wanandroid.com/";
+    //SQLiteDatabase
+    public static final String DB_NAME = "WanAndroid.db";
     //SharedPreferences
     public static final String SHARED_PREFERENCES_NAME = "config";
     //登陆状态

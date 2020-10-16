@@ -152,6 +152,11 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCon
     }
 
     @Override
+    protected boolean supportStatusBar() {
+        return true;
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         stopTimer();

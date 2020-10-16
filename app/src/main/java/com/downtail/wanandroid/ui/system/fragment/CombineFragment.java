@@ -3,6 +3,11 @@ package com.downtail.wanandroid.ui.system.fragment;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
+
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.downtail.wanandroid.R;
@@ -15,10 +20,6 @@ import com.downtail.wanandroid.ui.system.adapter.CombineFragmentAdapter;
 import java.util.Arrays;
 import java.util.List;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.widget.ViewPager2;
 import butterknife.BindView;
 
 public class CombineFragment extends BaseFragment<CombinePresenter> implements CombineContract.View,
@@ -71,6 +72,11 @@ public class CombineFragment extends BaseFragment<CombinePresenter> implements C
     @Override
     public void onReload() {
 
+    }
+
+    @Override
+    protected boolean supportStatusBar() {
+        return true;
     }
 
     @Override
