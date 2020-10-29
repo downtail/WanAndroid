@@ -3,7 +3,7 @@ package com.downtail.wanandroid.ui.system.adapter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.downtail.wanandroid.R;
-import com.downtail.wanandroid.ui.system.entity.SystemResponse;
+import com.downtail.wanandroid.entity.response.SystemResponse;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

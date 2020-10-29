@@ -2,6 +2,7 @@ package com.downtail.wanandroid.ui.main;
 
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.core.view.GravityCompat;
@@ -12,6 +13,8 @@ import com.downtail.wanandroid.R;
 import com.downtail.wanandroid.app.Navigator;
 import com.downtail.wanandroid.base.activity.BaseActivity;
 import com.downtail.wanandroid.contract.main.MainContract;
+import com.downtail.wanandroid.entity.response.RankResponse;
+import com.downtail.wanandroid.entity.response.UserEntity;
 import com.downtail.wanandroid.presenter.main.MainPresenter;
 import com.downtail.wanandroid.utils.AppUtil;
 import com.downtail.wanandroid.utils.ExitUtil;
@@ -31,6 +34,8 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     BottomNavigationView navigationView;
     @BindView(R.id.vpContainer)
     ViewPager2 pagerContainer;
+    @BindView(R.id.tvNickname)
+    TextView tvNickname;
 
     @Override
     protected void initBeforeBindLayout() {
@@ -88,6 +93,14 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     @Override
     public void onReload() {
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (mPresenter.getUserLoginStatus()) {
+            mPresenter.getUserEntity();
+        }
     }
 
     @Override
@@ -156,6 +169,18 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
         } else {
             jumpToLogin();
+        }
+    }
+
+    @Override
+    public void loadRankData(RankResponse data) {
+
+    }
+
+    @Override
+    public void loadUserEntity(UserEntity entity) {
+        if (entity != null) {
+            tvNickname.setText(entity.getNickname());
         }
     }
 }

@@ -1,7 +1,6 @@
-package com.downtail.wanandroid.ui.project.entity;
+package com.downtail.wanandroid.entity.response;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
-import com.downtail.wanandroid.ui.mine.entity.WebsiteResponse;
 
 public class ArticleMultipleEntity implements MultiItemEntity {
 

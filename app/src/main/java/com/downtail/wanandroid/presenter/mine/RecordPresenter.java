@@ -4,10 +4,10 @@ import com.downtail.wanandroid.base.mvp.BasePresenter;
 import com.downtail.wanandroid.contract.mine.RecordContract;
 import com.downtail.wanandroid.core.http.DefaultObserver;
 import com.downtail.wanandroid.core.http.RxUtil;
-import com.downtail.wanandroid.ui.mine.entity.RankResponse;
-import com.downtail.wanandroid.ui.mine.entity.RecordMultipleEntity;
-import com.downtail.wanandroid.ui.mine.entity.RecordResponse;
-import com.downtail.wanandroid.ui.project.entity.Paging;
+import com.downtail.wanandroid.entity.response.RankResponse;
+import com.downtail.wanandroid.entity.response.RecordMultipleEntity;
+import com.downtail.wanandroid.entity.response.RecordResponse;
+import com.downtail.wanandroid.entity.response.Paging;
 
 import java.util.ArrayList;
 import java.util.List;

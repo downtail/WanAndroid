@@ -1,4 +1,4 @@
-package com.downtail.wanandroid.ui.main;
+package com.downtail.wanandroid.entity.response;
 
 import java.util.List;
 

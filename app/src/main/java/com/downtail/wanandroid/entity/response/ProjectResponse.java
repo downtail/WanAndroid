@@ -1,8 +1,8 @@
-package com.downtail.wanandroid.ui.project.entity;
+package com.downtail.wanandroid.entity.response;
 
 import java.util.List;
 
-public class CategoryResponse {
+public class ProjectResponse {
 
 
     /**

@@ -7,9 +7,9 @@ import com.downtail.wanandroid.app.Navigator;
 import com.downtail.wanandroid.base.fragment.BaseFragment;
 import com.downtail.wanandroid.contract.system.NavigationContract;
 import com.downtail.wanandroid.presenter.system.NavigationPresenter;
-import com.downtail.wanandroid.ui.project.entity.ArticleResponse;
+import com.downtail.wanandroid.entity.response.ArticleResponse;
 import com.downtail.wanandroid.ui.system.adapter.NavigationAdapter;
-import com.downtail.wanandroid.ui.system.entity.NavigationResponse;
+import com.downtail.wanandroid.entity.response.NavigationResponse;
 
 import java.util.List;
 

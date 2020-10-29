@@ -17,15 +17,12 @@ import com.blankj.utilcode.util.ToastUtils;
 import com.downtail.wanandroid.R;
 import com.downtail.wanandroid.app.Navigator;
 import com.downtail.wanandroid.base.mvp.BaseContract;
-import com.downtail.wanandroid.entity.event.LogoutEvent;
 import com.downtail.wanandroid.utils.AppUtil;
 import com.downtail.wanandroid.widget.StatePlus;
 import com.downtail.wanandroid.widget.plus.StatusBarPlus;
 import com.trello.rxlifecycle3.LifecycleTransformer;
 
 import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -54,7 +51,9 @@ public abstract class BaseActivity<T extends BaseContract.BasePresenter> extends
         //Activity管理类
         AppUtil.getInstance().push(this);
         //注册EventBus
-        registerEventBus();
+        if (supportEventBus()) {
+            registerEventBus();
+        }
         //设置屏幕方向
         setScreenOrientation();
         //适配状态栏
@@ -71,7 +70,9 @@ public abstract class BaseActivity<T extends BaseContract.BasePresenter> extends
     protected void onDestroy() {
         super.onDestroy();
         unbinder.unbind();
-        unregisterEventBus();
+        if (supportEventBus()) {
+            unregisterEventBus();
+        }
         AppUtil.getInstance().pop(mActivity);
     }
 
@@ -82,6 +83,10 @@ public abstract class BaseActivity<T extends BaseContract.BasePresenter> extends
 
     protected void initBeforeBindLayout() {
 
+    }
+
+    protected boolean supportEventBus() {
+        return false;
     }
 
     protected void registerEventBus() {
@@ -192,15 +197,6 @@ public abstract class BaseActivity<T extends BaseContract.BasePresenter> extends
         InputMethodManager im = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         if (im != null) {
             im.hideSoftInputFromWindow(view.getApplicationWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-        }
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void getLogoutEvent(LogoutEvent event) {
-        Activity theTop = AppUtil.getInstance().peek();
-        if (this == theTop) {
-            toast(event.getMessage());
-            jumpToLogin();
         }
     }
 }

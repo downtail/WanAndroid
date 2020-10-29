@@ -1,7 +1,7 @@
 package com.downtail.wanandroid.contract.project;
 
 import com.downtail.wanandroid.base.mvp.BaseContract;
-import com.downtail.wanandroid.ui.project.entity.CategoryResponse;
+import com.downtail.wanandroid.entity.response.CategoryResponse;
 
 import java.util.List;
 

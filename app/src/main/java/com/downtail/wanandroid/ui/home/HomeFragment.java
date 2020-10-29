@@ -20,11 +20,12 @@ import com.downtail.wanandroid.app.Navigator;
 import com.downtail.wanandroid.base.fragment.BaseFragment;
 import com.downtail.wanandroid.contract.home.HomeContract;
 import com.downtail.wanandroid.core.http.DefaultObserver;
+import com.downtail.wanandroid.entity.response.ArticleMultipleEntity;
+import com.downtail.wanandroid.entity.response.ArticleResponse;
+import com.downtail.wanandroid.entity.response.BannerResponse;
+import com.downtail.wanandroid.entity.response.Paging;
 import com.downtail.wanandroid.presenter.home.HomePresenter;
 import com.downtail.wanandroid.ui.project.adapter.ArticleAdapter;
-import com.downtail.wanandroid.ui.project.entity.ArticleMultipleEntity;
-import com.downtail.wanandroid.ui.project.entity.ArticleResponse;
-import com.downtail.wanandroid.ui.project.entity.Paging;
 import com.downtail.wanandroid.utils.DisplayUtil;
 import com.downtail.wanandroid.widget.ScalePageTransformer;
 import com.google.android.material.appbar.AppBarLayout;
@@ -99,7 +100,10 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCon
         bannerAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {
-
+                BannerResponse item = bannerAdapter.getItem(position);
+                if (item != null) {
+                    Navigator.openBrowser(_mActivity, item.getUrl(), item.getId(), false);
+                }
             }
         });
         pagerBanner.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {

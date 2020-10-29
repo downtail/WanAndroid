@@ -1,6 +1,7 @@
 package com.downtail.wanandroid.contract.main;
 
 import com.downtail.wanandroid.base.mvp.BaseContract;
+import com.downtail.wanandroid.entity.response.UserEntity;
 
 public interface LoginContract {
 
@@ -14,5 +15,7 @@ public interface LoginContract {
         void login(String username, String password);
 
         void register(String username, String password, String rePassword);
+
+        void setUserEntity(UserEntity entity);
     }
 }

@@ -11,6 +11,8 @@ public class Constants {
     public static final String SHARED_PREFERENCES_NAME = "config";
     //登陆状态
     public static final String LOGIN_STATUS = "isLogin";
+    //用户信息
+    public static final String USER_INFO = "userInfo";
 
     //-----------------------------------------------常量模块-----------------------------------------------
     //轮播图

@@ -1,9 +1,9 @@
 package com.downtail.wanandroid.contract.home;
 
 import com.downtail.wanandroid.base.mvp.BaseContract;
-import com.downtail.wanandroid.ui.home.BannerResponse;
-import com.downtail.wanandroid.ui.project.entity.ArticleMultipleEntity;
-import com.downtail.wanandroid.ui.project.entity.Paging;
+import com.downtail.wanandroid.entity.response.BannerResponse;
+import com.downtail.wanandroid.entity.response.ArticleMultipleEntity;
+import com.downtail.wanandroid.entity.response.Paging;
 
 import java.util.List;
 

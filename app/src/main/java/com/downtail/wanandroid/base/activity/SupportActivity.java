@@ -3,10 +3,11 @@ package com.downtail.wanandroid.base.activity;
 import android.os.Bundle;
 import android.view.MotionEvent;
 
-import com.trello.rxlifecycle3.components.support.RxAppCompatActivity;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.trello.rxlifecycle3.components.support.RxAppCompatActivity;
+
 import me.yokeyword.fragmentation.ExtraTransaction;
 import me.yokeyword.fragmentation.ISupportActivity;
 import me.yokeyword.fragmentation.ISupportFragment;

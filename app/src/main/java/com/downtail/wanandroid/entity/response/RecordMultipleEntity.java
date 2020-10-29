@@ -1,4 +1,4 @@
-package com.downtail.wanandroid.ui.mine.entity;
+package com.downtail.wanandroid.entity.response;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 

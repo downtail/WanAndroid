@@ -2,8 +2,8 @@ package com.downtail.wanandroid.core.http.api;
 
 import com.downtail.wanandroid.app.Constants;
 import com.downtail.wanandroid.core.http.BaseResponse;
-import com.downtail.wanandroid.ui.system.entity.NavigationResponse;
-import com.downtail.wanandroid.ui.system.entity.SystemResponse;
+import com.downtail.wanandroid.entity.response.NavigationResponse;
+import com.downtail.wanandroid.entity.response.SystemResponse;
 
 import java.util.List;
 

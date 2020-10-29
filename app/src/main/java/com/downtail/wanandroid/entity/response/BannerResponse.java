@@ -1,4 +1,4 @@
-package com.downtail.wanandroid.ui.home;
+package com.downtail.wanandroid.entity.response;
 
 public class BannerResponse {
 

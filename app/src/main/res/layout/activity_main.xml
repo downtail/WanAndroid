@@ -67,22 +67,34 @@
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/ivClient"
                     android:layout_width="@dimen/dimen_80dp"
-                    android:src="@mipmap/image_client_default"
                     android:layout_height="@dimen/dimen_80dp"
                     android:layout_marginTop="@dimen/dimen_60dp"
+                    android:src="@mipmap/image_client_default"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+                <TextView
+                    android:id="@+id/tvNickname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_100dp"
+                    android:textColor="@color/color_424242"
+                    android:textSize="@dimen/dimen_14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/ivClient" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <RelativeLayout
-                android:background="@drawable/bg_item"
-                android:focusable="true"
-                android:clickable="true"
                 android:id="@+id/layoutRank"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen_50dp">
+                android:layout_height="@dimen/dimen_50dp"
+                android:background="@drawable/bg_item"
+                android:clickable="true"
+                android:focusable="true">
 
                 <ImageView
                     android:layout_width="@dimen/dimen_20dp"
@@ -92,32 +104,32 @@
                     android:src="@drawable/image_mine_rank" />
 
                 <TextView
-                    android:text="@string/mine_rank"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/dp_40"
+                    android:text="@string/mine_rank"
                     android:textColor="@color/color_424242"
                     android:textSize="@dimen/dimen_12sp" />
 
                 <ImageView
-                    android:src="@drawable/pointer_right"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="@dimen/dimen_20dp"
                     android:layout_width="@dimen/dimen_15dp"
-                    android:layout_height="@dimen/dimen_15dp"/>
+                    android:layout_height="@dimen/dimen_15dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/dimen_20dp"
+                    android:src="@drawable/pointer_right" />
 
             </RelativeLayout>
 
             <RelativeLayout
-                android:background="@drawable/bg_item"
-                android:focusable="true"
-                android:clickable="true"
                 android:id="@+id/layoutCollect"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen_50dp">
+                android:layout_height="@dimen/dimen_50dp"
+                android:background="@drawable/bg_item"
+                android:clickable="true"
+                android:focusable="true">
 
                 <ImageView
                     android:layout_width="@dimen/dimen_20dp"
@@ -128,32 +140,32 @@
 
 
                 <TextView
-                    android:text="@string/mine_collect"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/dp_40"
+                    android:text="@string/mine_collect"
                     android:textColor="@color/color_424242"
                     android:textSize="@dimen/dimen_12sp" />
 
                 <ImageView
-                    android:src="@drawable/pointer_right"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="@dimen/dimen_20dp"
                     android:layout_width="@dimen/dimen_15dp"
-                    android:layout_height="@dimen/dimen_15dp"/>
+                    android:layout_height="@dimen/dimen_15dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/dimen_20dp"
+                    android:src="@drawable/pointer_right" />
 
             </RelativeLayout>
 
             <RelativeLayout
-                android:background="@drawable/bg_item"
-                android:focusable="true"
-                android:clickable="true"
                 android:id="@+id/layoutSetting"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen_50dp">
+                android:layout_height="@dimen/dimen_50dp"
+                android:background="@drawable/bg_item"
+                android:clickable="true"
+                android:focusable="true">
 
                 <ImageView
                     android:layout_width="@dimen/dimen_20dp"
@@ -164,22 +176,22 @@
 
 
                 <TextView
-                    android:text="@string/mine_setting"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/dp_40"
+                    android:text="@string/mine_setting"
                     android:textColor="@color/color_424242"
                     android:textSize="@dimen/dimen_12sp" />
 
                 <ImageView
-                    android:src="@drawable/pointer_right"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="@dimen/dimen_20dp"
                     android:layout_width="@dimen/dimen_15dp"
-                    android:layout_height="@dimen/dimen_15dp"/>
+                    android:layout_height="@dimen/dimen_15dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/dimen_20dp"
+                    android:src="@drawable/pointer_right" />
 
             </RelativeLayout>
 

@@ -1,6 +1,6 @@
-package com.downtail.wanandroid.ui.system.entity;
+package com.downtail.wanandroid.entity.response;
 
-import com.downtail.wanandroid.ui.project.entity.ArticleResponse;
+import com.downtail.wanandroid.entity.response.ArticleResponse;
 
 import java.util.List;
 

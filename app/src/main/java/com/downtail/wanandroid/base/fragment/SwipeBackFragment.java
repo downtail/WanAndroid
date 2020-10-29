@@ -5,6 +5,7 @@ import android.view.View;
 
 import androidx.annotation.FloatRange;
 import androidx.annotation.Nullable;
+
 import me.yokeyword.fragmentation.SwipeBackLayout;
 import me.yokeyword.fragmentation_swipeback.core.ISwipeBackFragment;
 import me.yokeyword.fragmentation_swipeback.core.SwipeBackFragmentDelegate;

@@ -1,8 +1,8 @@
 package com.downtail.wanandroid.contract.mine;
 
 import com.downtail.wanandroid.base.mvp.BaseContract;
-import com.downtail.wanandroid.ui.mine.entity.RecordMultipleEntity;
-import com.downtail.wanandroid.ui.project.entity.Paging;
+import com.downtail.wanandroid.entity.response.RecordMultipleEntity;
+import com.downtail.wanandroid.entity.response.Paging;
 
 public interface RecordContract {
 

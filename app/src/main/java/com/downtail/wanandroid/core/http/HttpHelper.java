@@ -1,16 +1,16 @@
 package com.downtail.wanandroid.core.http;
 
-import com.downtail.wanandroid.ui.home.BannerResponse;
-import com.downtail.wanandroid.ui.main.UserEntity;
-import com.downtail.wanandroid.ui.mine.entity.RankResponse;
-import com.downtail.wanandroid.ui.mine.entity.RecordResponse;
-import com.downtail.wanandroid.ui.mine.entity.WebsiteResponse;
-import com.downtail.wanandroid.ui.project.entity.ArticleResponse;
-import com.downtail.wanandroid.ui.project.entity.CategoryResponse;
-import com.downtail.wanandroid.ui.project.entity.Paging;
+import com.downtail.wanandroid.entity.response.BannerResponse;
+import com.downtail.wanandroid.entity.response.UserEntity;
+import com.downtail.wanandroid.entity.response.RankResponse;
+import com.downtail.wanandroid.entity.response.RecordResponse;
+import com.downtail.wanandroid.entity.response.WebsiteResponse;
+import com.downtail.wanandroid.entity.response.ArticleResponse;
+import com.downtail.wanandroid.entity.response.CategoryResponse;
+import com.downtail.wanandroid.entity.response.Paging;
 import com.downtail.wanandroid.entity.response.ServiceResponse;
-import com.downtail.wanandroid.ui.system.entity.NavigationResponse;
-import com.downtail.wanandroid.ui.system.entity.SystemResponse;
+import com.downtail.wanandroid.entity.response.NavigationResponse;
+import com.downtail.wanandroid.entity.response.SystemResponse;
 
 import java.util.List;
 

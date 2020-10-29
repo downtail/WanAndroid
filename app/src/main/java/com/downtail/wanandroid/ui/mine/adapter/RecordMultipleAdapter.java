@@ -4,9 +4,9 @@ import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.downtail.plus.extensions.FloaterExtension;
 import com.downtail.wanandroid.R;
-import com.downtail.wanandroid.ui.mine.entity.RankResponse;
-import com.downtail.wanandroid.ui.mine.entity.RecordMultipleEntity;
-import com.downtail.wanandroid.ui.mine.entity.RecordResponse;
+import com.downtail.wanandroid.entity.response.RankResponse;
+import com.downtail.wanandroid.entity.response.RecordMultipleEntity;
+import com.downtail.wanandroid.entity.response.RecordResponse;
 
 import org.jetbrains.annotations.NotNull;
 

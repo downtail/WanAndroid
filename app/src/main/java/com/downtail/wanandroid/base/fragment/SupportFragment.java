@@ -5,10 +5,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 
-import com.trello.rxlifecycle3.components.support.RxFragment;
-
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
+
+import com.trello.rxlifecycle3.components.support.RxFragment;
+
 import me.yokeyword.fragmentation.ExtraTransaction;
 import me.yokeyword.fragmentation.ISupportFragment;
 import me.yokeyword.fragmentation.SupportFragmentDelegate;

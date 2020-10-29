@@ -10,7 +10,6 @@ import android.widget.FrameLayout;
 import androidx.annotation.IntRange;
 import androidx.annotation.LayoutRes;
 
-
 import com.downtail.wanandroid.R;
 
 import static android.view.View.GONE;

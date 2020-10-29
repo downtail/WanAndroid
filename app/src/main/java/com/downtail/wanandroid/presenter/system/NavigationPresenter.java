@@ -4,7 +4,7 @@ import com.downtail.wanandroid.base.mvp.BasePresenter;
 import com.downtail.wanandroid.contract.system.NavigationContract;
 import com.downtail.wanandroid.core.http.BaseResponse;
 import com.downtail.wanandroid.core.http.DefaultObserver;
-import com.downtail.wanandroid.ui.system.entity.NavigationResponse;
+import com.downtail.wanandroid.entity.response.NavigationResponse;
 
 import java.util.List;
 

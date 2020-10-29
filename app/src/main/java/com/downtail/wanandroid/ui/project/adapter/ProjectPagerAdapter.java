@@ -1,7 +1,7 @@
 package com.downtail.wanandroid.ui.project.adapter;
 
 import com.downtail.wanandroid.ui.project.fragment.ArticleFragment;
-import com.downtail.wanandroid.ui.project.entity.CategoryResponse;
+import com.downtail.wanandroid.entity.response.CategoryResponse;
 
 import java.util.List;
 

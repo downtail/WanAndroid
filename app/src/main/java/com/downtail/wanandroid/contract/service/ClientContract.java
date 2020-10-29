@@ -1,8 +1,8 @@
 package com.downtail.wanandroid.contract.service;
 
 import com.downtail.wanandroid.base.mvp.BaseContract;
-import com.downtail.wanandroid.ui.project.entity.ArticleMultipleEntity;
-import com.downtail.wanandroid.ui.project.entity.Paging;
+import com.downtail.wanandroid.entity.response.ArticleMultipleEntity;
+import com.downtail.wanandroid.entity.response.Paging;
 
 public interface ClientContract {
 

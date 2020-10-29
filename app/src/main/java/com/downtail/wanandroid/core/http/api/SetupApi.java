@@ -2,12 +2,12 @@ package com.downtail.wanandroid.core.http.api;
 
 import com.downtail.wanandroid.app.Constants;
 import com.downtail.wanandroid.core.http.BaseResponse;
-import com.downtail.wanandroid.ui.main.UserEntity;
-import com.downtail.wanandroid.ui.mine.entity.RankResponse;
-import com.downtail.wanandroid.ui.mine.entity.RecordResponse;
-import com.downtail.wanandroid.ui.mine.entity.WebsiteResponse;
-import com.downtail.wanandroid.ui.project.entity.ArticleResponse;
-import com.downtail.wanandroid.ui.project.entity.Paging;
+import com.downtail.wanandroid.entity.response.UserEntity;
+import com.downtail.wanandroid.entity.response.RankResponse;
+import com.downtail.wanandroid.entity.response.RecordResponse;
+import com.downtail.wanandroid.entity.response.WebsiteResponse;
+import com.downtail.wanandroid.entity.response.ArticleResponse;
+import com.downtail.wanandroid.entity.response.Paging;
 
 import java.util.List;
 

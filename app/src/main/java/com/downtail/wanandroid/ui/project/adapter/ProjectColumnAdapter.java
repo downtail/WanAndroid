@@ -8,7 +8,7 @@ import androidx.core.content.ContextCompat;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.downtail.wanandroid.R;
-import com.downtail.wanandroid.ui.project.entity.CategoryResponse;
+import com.downtail.wanandroid.entity.response.CategoryResponse;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

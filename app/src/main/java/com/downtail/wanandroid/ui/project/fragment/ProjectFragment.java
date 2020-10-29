@@ -11,7 +11,7 @@ import com.downtail.wanandroid.contract.project.ProjectContract;
 import com.downtail.wanandroid.presenter.project.ProjectPresenter;
 import com.downtail.wanandroid.ui.project.adapter.ProjectColumnAdapter;
 import com.downtail.wanandroid.ui.project.adapter.ProjectPagerAdapter;
-import com.downtail.wanandroid.ui.project.entity.CategoryResponse;
+import com.downtail.wanandroid.entity.response.CategoryResponse;
 
 import java.util.List;
 

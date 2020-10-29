@@ -4,7 +4,7 @@ import com.downtail.wanandroid.base.mvp.BasePresenter;
 import com.downtail.wanandroid.contract.main.LoginContract;
 import com.downtail.wanandroid.core.http.DefaultObserver;
 import com.downtail.wanandroid.core.http.RxUtil;
-import com.downtail.wanandroid.ui.main.UserEntity;
+import com.downtail.wanandroid.entity.response.UserEntity;
 
 import javax.inject.Inject;
 
@@ -29,6 +29,7 @@ public class LoginPresenter extends BasePresenter<LoginContract.View> implements
                     public void onSuccess(UserEntity userEntity) {
                         dataManager.setLoginStatus(true);
                         mView.loginSuccess();
+                        setUserEntity(userEntity);
                     }
                 });
     }
@@ -42,9 +43,23 @@ public class LoginPresenter extends BasePresenter<LoginContract.View> implements
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new DefaultObserver<UserEntity>(mView) {
                     @Override
-                    public void onSuccess(UserEntity data) {
+                    public void onSuccess(UserEntity userEntity) {
                         dataManager.setLoginStatus(true);
                         mView.loginSuccess();
+                        setUserEntity(userEntity);
+                    }
+                });
+    }
+
+    @Override
+    public void setUserEntity(UserEntity entity) {
+        dataManager.setUserEntity(entity)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new DefaultObserver<Boolean>() {
+                    @Override
+                    public void onSuccess(Boolean data) {
+
                     }
                 });
     }

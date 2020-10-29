@@ -10,7 +10,7 @@ import com.blankj.utilcode.util.ScreenUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.downtail.wanandroid.R;
-import com.downtail.wanandroid.ui.mine.entity.RankResponse;
+import com.downtail.wanandroid.entity.response.RankResponse;
 
 import org.jetbrains.annotations.NotNull;
 

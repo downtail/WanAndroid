@@ -14,7 +14,7 @@ import com.downtail.wanandroid.base.fragment.BaseFragment;
 import com.downtail.wanandroid.contract.system.SystemContract;
 import com.downtail.wanandroid.presenter.system.SystemPresenter;
 import com.downtail.wanandroid.ui.system.adapter.SystemAdapter;
-import com.downtail.wanandroid.ui.system.entity.SystemResponse;
+import com.downtail.wanandroid.entity.response.SystemResponse;
 
 import java.util.List;
 

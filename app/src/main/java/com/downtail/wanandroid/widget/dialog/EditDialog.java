@@ -7,7 +7,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.downtail.wanandroid.R;
-import com.downtail.wanandroid.ui.mine.entity.WebsiteResponse;
+import com.downtail.wanandroid.entity.response.WebsiteResponse;
 
 import butterknife.BindView;
 import butterknife.OnClick;
