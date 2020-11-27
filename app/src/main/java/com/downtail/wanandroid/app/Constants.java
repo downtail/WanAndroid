@@ -61,4 +61,10 @@ public class Constants {
     public static final String CLIENT_ARTICLE = "wxarticle/list/{id}/{page}/json";
     //公众号关键字文章
     public static final String CLIENT_KEYWORD = "wxarticle/list/{id}/{page}/json?k=Java";
+    //热词
+    public static final String HOT_KEY = "hotkey/json";
+    //搜索
+    public static final String SEARCH = "article/query/{page}/json";
+    //常用网站
+    public static final String COMMON="friend/json";
 }

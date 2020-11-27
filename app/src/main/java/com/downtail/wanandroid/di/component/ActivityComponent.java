@@ -6,6 +6,7 @@ import com.downtail.wanandroid.di.module.ActivityModule;
 import com.downtail.wanandroid.di.scope.ActivityScope;
 import com.downtail.wanandroid.di.scope.ContextLife;
 import com.downtail.wanandroid.ui.browser.BrowserActivity;
+import com.downtail.wanandroid.ui.home.SearchActivity;
 import com.downtail.wanandroid.ui.main.LoginActivity;
 import com.downtail.wanandroid.ui.main.MainActivity;
 import com.downtail.wanandroid.ui.mine.activity.PreferenceActivity;
@@ -38,4 +39,6 @@ public interface ActivityComponent {
     void inject(RecordActivity activity);
 
     void inject(ClientActivity activity);
+
+    void inject(SearchActivity activity);
 }

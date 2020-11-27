@@ -7,9 +7,9 @@ import com.downtail.wanandroid.contract.mine.CollectContract;
 import com.downtail.wanandroid.core.http.DefaultObserver;
 import com.downtail.wanandroid.core.http.RxUtil;
 import com.downtail.wanandroid.entity.response.WebsiteResponse;
-import com.downtail.wanandroid.entity.response.ArticleMultipleEntity;
+import com.downtail.wanandroid.entity.local.ArticleMultipleEntity;
 import com.downtail.wanandroid.entity.response.ArticleResponse;
-import com.downtail.wanandroid.entity.response.Paging;
+import com.downtail.wanandroid.entity.local.Paging;
 
 import java.util.ArrayList;
 import java.util.List;

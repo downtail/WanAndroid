@@ -7,7 +7,7 @@ import com.downtail.wanandroid.entity.response.RankResponse;
 import com.downtail.wanandroid.entity.response.RecordResponse;
 import com.downtail.wanandroid.entity.response.WebsiteResponse;
 import com.downtail.wanandroid.entity.response.ArticleResponse;
-import com.downtail.wanandroid.entity.response.Paging;
+import com.downtail.wanandroid.entity.local.Paging;
 
 import java.util.List;
 

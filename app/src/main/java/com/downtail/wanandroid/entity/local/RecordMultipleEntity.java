@@ -1,6 +1,8 @@
-package com.downtail.wanandroid.entity.response;
+package com.downtail.wanandroid.entity.local;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
+import com.downtail.wanandroid.entity.response.RankResponse;
+import com.downtail.wanandroid.entity.response.RecordResponse;
 
 public class RecordMultipleEntity implements MultiItemEntity {
 

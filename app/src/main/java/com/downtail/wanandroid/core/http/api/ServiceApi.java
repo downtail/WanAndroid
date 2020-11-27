@@ -3,7 +3,7 @@ package com.downtail.wanandroid.core.http.api;
 import com.downtail.wanandroid.app.Constants;
 import com.downtail.wanandroid.core.http.BaseResponse;
 import com.downtail.wanandroid.entity.response.ArticleResponse;
-import com.downtail.wanandroid.entity.response.Paging;
+import com.downtail.wanandroid.entity.local.Paging;
 import com.downtail.wanandroid.entity.response.ServiceResponse;
 
 import java.util.List;

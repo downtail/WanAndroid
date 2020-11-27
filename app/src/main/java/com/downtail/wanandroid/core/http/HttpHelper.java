@@ -1,16 +1,18 @@
 package com.downtail.wanandroid.core.http;
 
+import com.downtail.wanandroid.entity.local.Paging;
+import com.downtail.wanandroid.entity.response.ArticleResponse;
 import com.downtail.wanandroid.entity.response.BannerResponse;
-import com.downtail.wanandroid.entity.response.UserEntity;
+import com.downtail.wanandroid.entity.response.CategoryResponse;
+import com.downtail.wanandroid.entity.response.CommonResponse;
+import com.downtail.wanandroid.entity.response.HotEntity;
+import com.downtail.wanandroid.entity.response.NavigationResponse;
 import com.downtail.wanandroid.entity.response.RankResponse;
 import com.downtail.wanandroid.entity.response.RecordResponse;
-import com.downtail.wanandroid.entity.response.WebsiteResponse;
-import com.downtail.wanandroid.entity.response.ArticleResponse;
-import com.downtail.wanandroid.entity.response.CategoryResponse;
-import com.downtail.wanandroid.entity.response.Paging;
 import com.downtail.wanandroid.entity.response.ServiceResponse;
-import com.downtail.wanandroid.entity.response.NavigationResponse;
 import com.downtail.wanandroid.entity.response.SystemResponse;
+import com.downtail.wanandroid.entity.response.UserEntity;
+import com.downtail.wanandroid.entity.response.WebsiteResponse;
 
 import java.util.List;
 
@@ -48,6 +50,8 @@ public interface HttpHelper {
 
     Observable<BaseResponse<String>> cancelArticleCollect(int id);
 
+    Observable<BaseResponse<List<CommonResponse>>> getCommonlyUsedWebsite();
+
     Observable<BaseResponse<Paging<ArticleResponse>>> getCollectArticleData(int page);
 
     Observable<BaseResponse<WebsiteResponse>> collectWebsite(String name, String link);
@@ -67,4 +71,8 @@ public interface HttpHelper {
     Observable<BaseResponse<Paging<ArticleResponse>>> getClientArticleData(int id, int page);
 
     Observable<BaseResponse<Paging<ArticleResponse>>> getClientArticleByKeyword(int id, int page, String keyword);
+
+    Observable<BaseResponse<List<HotEntity>>> getHotKey();
+
+    Observable<BaseResponse<Paging<ArticleResponse>>> getArticleByKeyword(int page, String keyword);
 }

@@ -10,7 +10,7 @@ import com.downtail.wanandroid.contract.mine.RankContract;
 import com.downtail.wanandroid.presenter.mine.RankPresenter;
 import com.downtail.wanandroid.ui.mine.adapter.RankAdapter;
 import com.downtail.wanandroid.entity.response.RankResponse;
-import com.downtail.wanandroid.entity.response.Paging;
+import com.downtail.wanandroid.entity.local.Paging;
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
 import com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener;

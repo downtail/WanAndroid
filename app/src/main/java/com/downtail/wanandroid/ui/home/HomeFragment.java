@@ -20,10 +20,10 @@ import com.downtail.wanandroid.app.Navigator;
 import com.downtail.wanandroid.base.fragment.BaseFragment;
 import com.downtail.wanandroid.contract.home.HomeContract;
 import com.downtail.wanandroid.core.http.DefaultObserver;
-import com.downtail.wanandroid.entity.response.ArticleMultipleEntity;
+import com.downtail.wanandroid.entity.local.ArticleMultipleEntity;
 import com.downtail.wanandroid.entity.response.ArticleResponse;
 import com.downtail.wanandroid.entity.response.BannerResponse;
-import com.downtail.wanandroid.entity.response.Paging;
+import com.downtail.wanandroid.entity.local.Paging;
 import com.downtail.wanandroid.presenter.home.HomePresenter;
 import com.downtail.wanandroid.ui.project.adapter.ArticleAdapter;
 import com.downtail.wanandroid.utils.DisplayUtil;
@@ -37,6 +37,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -299,6 +300,15 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCon
                     toast(R.string.cancelCollectSuccess);
                 }
             }
+        }
+    }
+
+    @OnClick({R.id.ivSearch})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.ivSearch:
+                Navigator.openSearch(_mActivity);
+                break;
         }
     }
 }

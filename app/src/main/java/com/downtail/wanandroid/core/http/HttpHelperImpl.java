@@ -5,17 +5,19 @@ import com.downtail.wanandroid.core.http.api.ProjectApi;
 import com.downtail.wanandroid.core.http.api.ServiceApi;
 import com.downtail.wanandroid.core.http.api.SetupApi;
 import com.downtail.wanandroid.core.http.api.SystemApi;
+import com.downtail.wanandroid.entity.local.Paging;
+import com.downtail.wanandroid.entity.response.ArticleResponse;
 import com.downtail.wanandroid.entity.response.BannerResponse;
-import com.downtail.wanandroid.entity.response.UserEntity;
+import com.downtail.wanandroid.entity.response.CategoryResponse;
+import com.downtail.wanandroid.entity.response.CommonResponse;
+import com.downtail.wanandroid.entity.response.HotEntity;
+import com.downtail.wanandroid.entity.response.NavigationResponse;
 import com.downtail.wanandroid.entity.response.RankResponse;
 import com.downtail.wanandroid.entity.response.RecordResponse;
-import com.downtail.wanandroid.entity.response.WebsiteResponse;
-import com.downtail.wanandroid.entity.response.ArticleResponse;
-import com.downtail.wanandroid.entity.response.CategoryResponse;
-import com.downtail.wanandroid.entity.response.Paging;
 import com.downtail.wanandroid.entity.response.ServiceResponse;
-import com.downtail.wanandroid.entity.response.NavigationResponse;
 import com.downtail.wanandroid.entity.response.SystemResponse;
+import com.downtail.wanandroid.entity.response.UserEntity;
+import com.downtail.wanandroid.entity.response.WebsiteResponse;
 
 import java.util.List;
 
@@ -113,6 +115,11 @@ public class HttpHelperImpl implements HttpHelper {
     }
 
     @Override
+    public Observable<BaseResponse<List<CommonResponse>>> getCommonlyUsedWebsite() {
+        return homeApi.getCommonlyUsedWebsite();
+    }
+
+    @Override
     public Observable<BaseResponse<Paging<ArticleResponse>>> getCollectArticleData(int page) {
         return setupApi.getCollectArticleData(page);
     }
@@ -160,5 +167,15 @@ public class HttpHelperImpl implements HttpHelper {
     @Override
     public Observable<BaseResponse<Paging<ArticleResponse>>> getClientArticleByKeyword(int id, int page, String keyword) {
         return serviceApi.getClientArticleByKeyword(id, page, keyword);
+    }
+
+    @Override
+    public Observable<BaseResponse<List<HotEntity>>> getHotKey() {
+        return homeApi.getHotKey();
+    }
+
+    @Override
+    public Observable<BaseResponse<Paging<ArticleResponse>>> getArticleByKeyword(int page, String keyword) {
+        return homeApi.getArticleByKeyword(page, keyword);
     }
 }

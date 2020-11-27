@@ -14,13 +14,13 @@ import org.greenrobot.greendao.annotation.Unique;
 public class Author {
 
     @Id(autoincrement = true)
-    Long id;
+    private Long id;
     @Unique
     @NotNull
-    int authorId;
-    String name;
-    String thumb;
-    String description;
+    private int authorId;
+    private String name;
+    private String thumb;
+    private String description;
 
     @Generated(hash = 470542212)
     public Author(Long id, int authorId, String name, String thumb,

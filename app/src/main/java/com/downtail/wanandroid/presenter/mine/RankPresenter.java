@@ -5,7 +5,7 @@ import com.downtail.wanandroid.contract.mine.RankContract;
 import com.downtail.wanandroid.core.http.DefaultObserver;
 import com.downtail.wanandroid.core.http.RxUtil;
 import com.downtail.wanandroid.entity.response.RankResponse;
-import com.downtail.wanandroid.entity.response.Paging;
+import com.downtail.wanandroid.entity.local.Paging;
 
 import javax.inject.Inject;
 

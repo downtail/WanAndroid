@@ -34,4 +34,8 @@
     <string name="userPasswordError">两次密码不一致</string>
     <string name="userLoginSuccess">登陆成功</string>
     <string name="userLogoutSuccess">退出成功</string>
+
+    <string name="hotKey">热词</string>
+    <string name="searchCache">历史</string>
+    <string name="noData">暂无内容</string>
 </resources>

@@ -3,6 +3,8 @@ package com.downtail.wanandroid.core.db;
 import com.downtail.wanandroid.entity.db.Author;
 import com.downtail.wanandroid.entity.db.AuthorDao;
 import com.downtail.wanandroid.entity.db.DaoSession;
+import com.downtail.wanandroid.entity.db.Word;
+import com.downtail.wanandroid.entity.db.WordDao;
 
 import java.util.List;
 
@@ -32,5 +34,24 @@ public class DatabaseHelperImpl implements DatabaseHelper {
     public void saveAuthorList(List<Author> data) {
         AuthorDao authorDao = daoSession.getAuthorDao();
         authorDao.insertOrReplaceInTx(data);
+    }
+
+    @Override
+    public Observable<Long> saveRecentWord(String keyword, long createTime) {
+        WordDao wordDao = daoSession.getWordDao();
+        Word word = new Word();
+        word.setKeyword(keyword);
+        word.setCreateTime(createTime);
+        long id = wordDao.insertOrReplace(word);
+        return Observable.just(id);
+    }
+
+    @Override
+    public Observable<List<Word>> getRecentWord() {
+        WordDao wordDao = daoSession.getWordDao();
+        List<Word> list = wordDao.queryBuilder()
+                .orderDesc(WordDao.Properties.CreateTime)
+                .list();
+        return Observable.just(list);
     }
 }

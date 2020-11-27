@@ -3,96 +3,50 @@ package com.downtail.wanandroid.presenter.home;
 import android.text.TextUtils;
 
 import com.downtail.wanandroid.base.mvp.BasePresenter;
-import com.downtail.wanandroid.contract.home.HomeContract;
+import com.downtail.wanandroid.contract.home.SearchContract;
 import com.downtail.wanandroid.core.http.DefaultObserver;
 import com.downtail.wanandroid.core.http.RxUtil;
-import com.downtail.wanandroid.entity.response.BannerResponse;
+import com.downtail.wanandroid.entity.db.Word;
 import com.downtail.wanandroid.entity.local.ArticleMultipleEntity;
-import com.downtail.wanandroid.entity.response.ArticleResponse;
 import com.downtail.wanandroid.entity.local.Paging;
+import com.downtail.wanandroid.entity.response.ArticleResponse;
+import com.downtail.wanandroid.entity.response.HotEntity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
-import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.BiFunction;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
-public class HomePresenter extends BasePresenter<HomeContract.View> implements HomeContract.Presenter {
+public class SearchPresenter extends BasePresenter<SearchContract.View> implements SearchContract.Presenter {
 
     @Inject
-    public HomePresenter() {
+    public SearchPresenter() {
     }
 
     @Override
-    public void getBannerData() {
-        dataManager.getBannerData()
+    public void getHotKey() {
+        dataManager.getHotKey()
                 .compose(mView.bindToLife())
                 .compose(RxUtil.transformer())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new DefaultObserver<List<BannerResponse>>(mView) {
+                .subscribe(new DefaultObserver<List<HotEntity>>(mView) {
                     @Override
-                    public void onSuccess(List<BannerResponse> data) {
-                        mView.loadBannerData(data);
+                    public void onSuccess(List<HotEntity> data) {
+                        if (mView != null) {
+                            mView.loadHotKey(data);
+                        }
                     }
                 });
     }
 
     @Override
-    public void getAdvancedArticleData(int page) {
-        Observable.zip(
-                dataManager.getAdvancedArticleData()
-                        .compose(mView.bindToLife())
-                        .compose(RxUtil.transformer())
-                        .subscribeOn(Schedulers.io()),
-                dataManager.getHomeArticleData(page)
-                        .compose(mView.bindToLife())
-                        .compose(RxUtil.transformer())
-                        .subscribeOn(Schedulers.io()),
-                new BiFunction<List<ArticleResponse>, Paging<ArticleResponse>, Paging<ArticleMultipleEntity>>() {
-                    @Override
-                    public Paging<ArticleMultipleEntity> apply(List<ArticleResponse> articleResponses, Paging<ArticleResponse> paging) throws Exception {
-                        List<ArticleMultipleEntity> data = new ArrayList<>();
-                        for (int i = 0; i < articleResponses.size(); i++) {
-                            ArticleResponse articleResponse = articleResponses.get(i);
-                            if (TextUtils.isEmpty(articleResponse.getEnvelopePic())) {
-                                data.add(new ArticleMultipleEntity(ArticleMultipleEntity.TEXT, articleResponse));
-                            } else {
-                                data.add(new ArticleMultipleEntity(ArticleMultipleEntity.IMAGE, articleResponse));
-                            }
-                        }
-                        List<ArticleResponse> datas = paging.getDatas();
-                        for (int i = 0; i < datas.size(); i++) {
-                            ArticleResponse articleResponse = datas.get(i);
-                            if (TextUtils.isEmpty(articleResponse.getEnvelopePic())) {
-                                data.add(new ArticleMultipleEntity(ArticleMultipleEntity.TEXT, articleResponse));
-                            } else {
-                                data.add(new ArticleMultipleEntity(ArticleMultipleEntity.IMAGE, articleResponse));
-                            }
-                        }
-                        return new Paging<>(paging.getCurPage(), paging.getOffset(), paging.isOver(), paging.getPageCount(), paging.getSize(), paging.getTotal(), data);
-
-                    }
-                })
-                .compose(mView.bindToLife())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new DefaultObserver<Paging<ArticleMultipleEntity>>(mView) {
-                    @Override
-                    public void onSuccess(Paging<ArticleMultipleEntity> data) {
-                        mView.loadAdvancedArticleData(data);
-                    }
-                });
-    }
-
-    @Override
-    public void getHomeArticleData(int page) {
-        dataManager.getHomeArticleData(page)
+    public void getArticleByKeyword(int page, String keyword) {
+        dataManager.getArticleByKeyword(page, keyword)
                 .compose(mView.bindToLife())
                 .compose(RxUtil.transformer())
                 .subscribeOn(Schedulers.io())
@@ -116,7 +70,9 @@ public class HomePresenter extends BasePresenter<HomeContract.View> implements H
                 .subscribe(new DefaultObserver<Paging<ArticleMultipleEntity>>(mView) {
                     @Override
                     public void onSuccess(Paging<ArticleMultipleEntity> data) {
-                        mView.loadAdvancedArticleData(data);
+                        if (mView != null) {
+                            mView.loadArticleData(data);
+                        }
                     }
                 });
     }
@@ -147,6 +103,36 @@ public class HomePresenter extends BasePresenter<HomeContract.View> implements H
                     @Override
                     public void onSuccess(String data) {
                         mView.loadArticleCollectState(position, false);
+                    }
+                });
+    }
+
+    @Override
+    public void saveRecentWord(String keyword, long createTime) {
+        dataManager.saveRecentWord(keyword, createTime)
+                .compose(mView.bindToLife())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new DefaultObserver<Long>() {
+                    @Override
+                    public void onSuccess(Long data) {
+                        getRecentWord();
+                    }
+                });
+    }
+
+    @Override
+    public void getRecentWord() {
+        dataManager.getRecentWord()
+                .compose(mView.bindToLife())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new DefaultObserver<List<Word>>() {
+                    @Override
+                    public void onSuccess(List<Word> data) {
+                        if (mView != null) {
+                            mView.getRecentWord(data);
+                        }
                     }
                 });
     }

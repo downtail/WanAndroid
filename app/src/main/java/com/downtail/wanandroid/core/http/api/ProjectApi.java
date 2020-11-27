@@ -4,7 +4,7 @@ import com.downtail.wanandroid.app.Constants;
 import com.downtail.wanandroid.core.http.BaseResponse;
 import com.downtail.wanandroid.entity.response.ArticleResponse;
 import com.downtail.wanandroid.entity.response.CategoryResponse;
-import com.downtail.wanandroid.entity.response.Paging;
+import com.downtail.wanandroid.entity.local.Paging;
 
 import java.util.List;
 

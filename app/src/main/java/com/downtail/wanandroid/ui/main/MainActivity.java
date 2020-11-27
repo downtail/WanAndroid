@@ -75,7 +75,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         navigationView.setOnNavigationItemSelectedListener(this);
         MainFragmentAdapter mainFragmentAdapter = new MainFragmentAdapter(this);
         pagerContainer.setOffscreenPageLimit(2);
-        pagerContainer.setUserInputEnabled(false);
+        pagerContainer.setUserInputEnabled(true);
         pagerContainer.setAdapter(mainFragmentAdapter);
         pagerContainer.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override

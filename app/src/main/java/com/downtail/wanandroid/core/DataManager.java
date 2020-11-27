@@ -6,11 +6,14 @@ import com.downtail.wanandroid.core.http.BaseResponse;
 import com.downtail.wanandroid.core.http.HttpHelper;
 import com.downtail.wanandroid.core.preference.PreferenceHelper;
 import com.downtail.wanandroid.entity.db.Author;
+import com.downtail.wanandroid.entity.db.Word;
+import com.downtail.wanandroid.entity.local.Paging;
 import com.downtail.wanandroid.entity.response.ArticleResponse;
 import com.downtail.wanandroid.entity.response.BannerResponse;
 import com.downtail.wanandroid.entity.response.CategoryResponse;
+import com.downtail.wanandroid.entity.response.CommonResponse;
+import com.downtail.wanandroid.entity.response.HotEntity;
 import com.downtail.wanandroid.entity.response.NavigationResponse;
-import com.downtail.wanandroid.entity.response.Paging;
 import com.downtail.wanandroid.entity.response.RankResponse;
 import com.downtail.wanandroid.entity.response.RecordResponse;
 import com.downtail.wanandroid.entity.response.ServiceResponse;
@@ -127,6 +130,11 @@ public class DataManager implements HttpHelper, DatabaseHelper, PreferenceHelper
     }
 
     @Override
+    public Observable<BaseResponse<List<CommonResponse>>> getCommonlyUsedWebsite() {
+        return httpHelper.getCommonlyUsedWebsite();
+    }
+
+    @Override
     public Observable<BaseResponse<Paging<ArticleResponse>>> getCollectArticleData(int page) {
         return httpHelper.getCollectArticleData(page);
     }
@@ -184,5 +192,25 @@ public class DataManager implements HttpHelper, DatabaseHelper, PreferenceHelper
     @Override
     public void saveAuthorList(List<Author> data) {
         databaseHelper.saveAuthorList(data);
+    }
+
+    @Override
+    public Observable<BaseResponse<List<HotEntity>>> getHotKey() {
+        return httpHelper.getHotKey();
+    }
+
+    @Override
+    public Observable<BaseResponse<Paging<ArticleResponse>>> getArticleByKeyword(int page, String keyword) {
+        return httpHelper.getArticleByKeyword(page, keyword);
+    }
+
+    @Override
+    public Observable<Long> saveRecentWord(String keyword, long createTime) {
+        return databaseHelper.saveRecentWord(keyword,createTime);
+    }
+
+    @Override
+    public Observable<List<Word>> getRecentWord() {
+        return databaseHelper.getRecentWord();
     }
 }

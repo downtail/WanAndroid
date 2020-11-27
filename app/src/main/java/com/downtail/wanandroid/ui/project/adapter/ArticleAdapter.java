@@ -6,7 +6,7 @@ import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.downtail.wanandroid.R;
 import com.downtail.wanandroid.entity.response.WebsiteResponse;
-import com.downtail.wanandroid.entity.response.ArticleMultipleEntity;
+import com.downtail.wanandroid.entity.local.ArticleMultipleEntity;
 import com.downtail.wanandroid.entity.response.ArticleResponse;
 import com.downtail.wanandroid.utils.ImageLoader;
 

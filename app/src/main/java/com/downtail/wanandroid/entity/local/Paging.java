@@ -1,4 +1,4 @@
-package com.downtail.wanandroid.entity.response;
+package com.downtail.wanandroid.entity.local;
 
 import java.util.List;
 

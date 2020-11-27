@@ -5,6 +5,7 @@ import android.content.Intent;
 
 import com.downtail.wanandroid.R;
 import com.downtail.wanandroid.ui.browser.BrowserActivity;
+import com.downtail.wanandroid.ui.home.SearchActivity;
 import com.downtail.wanandroid.ui.main.LoginActivity;
 import com.downtail.wanandroid.ui.main.MainActivity;
 import com.downtail.wanandroid.ui.mine.activity.CollectActivity;
@@ -59,6 +60,11 @@ public class Navigator {
         Intent intent = new Intent(activity, ClientActivity.class);
         intent.putExtra(ClientActivity.ID, id);
         intent.putExtra(ClientActivity.NAME, name);
+        activity.startActivity(intent);
+    }
+
+    public static void openSearch(Activity activity) {
+        Intent intent = new Intent(activity, SearchActivity.class);
         activity.startActivity(intent);
     }
 }
